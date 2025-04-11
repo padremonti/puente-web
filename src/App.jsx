@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
 export default function PuenteChat() {
   const [language, setLanguage] = useState(localStorage.getItem("language") || null);
@@ -28,21 +28,23 @@ export default function PuenteChat() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${OPENAI_API_KEY}`,
         },
-        body: JSON.stringify({ model: "tts-1", voice: voiceOption, input: text }),
+        body: JSON.stringify({
+          model: "tts-1",
+          voice: voiceOption,
+          input: text,
+        }),
       });
-
-      if (!response.ok) throw new Error("Error generando audio");
-
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      const audio = new Audio(url);
-      audio.play();
-      audio.onended = () => setIsSpeaking(false);
-    } catch (err) {
-      console.error(err);
+  
+      // seguir manejando respuesta...
+  
+    } catch (error) {
+      console.error("Error al generar voz:", error);
+      setError("Lo siento, algo salió mal.");
+    } finally {
       setIsSpeaking(false);
     }
   };
+  
 
   const animateTyping = (text) => {
     let index = 0;
@@ -92,6 +94,7 @@ export default function PuenteChat() {
           ],
         }),
       });
+      
 
       const data = await response.json();
       const content = data?.choices?.[0]?.message?.content?.trim();
