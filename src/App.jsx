@@ -139,8 +139,8 @@ export default function PuenteChat() {
   if (showIntro) {
     return (
       <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center justify-center p-4 space-y-4 text-center">
-        <img src="/puente-logo naranja1.png" className="w-24 h-24 rounded-xl" />
-        <h1 className="text-2xl font-bold text-[#c45c2d]">Bienvenido a Puente 🌉</h1>
+        <img src="/puen logo.png" className="w-24 h-24 rounded-xl" />
+        <h1 className="text-2xl font-bold text-[#c45c2d]">Bienvenido a puen 🌉</h1>
         {!language ? (
           <>
             <p>Selecciona tu idioma / Select your language:</p>
