@@ -20,9 +20,10 @@ export default function PuenteChat() {
   useEffect(() => localStorage.setItem("voiceOption", voiceOption), [voiceOption]);
 
   const speak = async (text) => {
-    try {
-      setIsSpeaking(true);
+    console.log("🗣️ Llamando a speak con:", text);
+    setIsSpeaking(true);
   
+    try {
       const response = await fetch("https://api.openai.com/v1/audio/speech", {
         method: "POST",
         headers: {
@@ -37,23 +38,40 @@ export default function PuenteChat() {
       });
   
       if (!response.ok) {
-        throw new Error("Error al generar el audio");
+        const errorText = await response.text();
+        throw new Error(`Respuesta no exitosa: ${response.status} - ${errorText}`);
       }
   
-      const audioBlob = await response.blob(); // recibes el audio como blob
-      const audioUrl = URL.createObjectURL(audioBlob); // creas una URL reproducible
-      const audio = new Audio(audioUrl); // instancia el reproductor
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
   
-      audio.play(); // ¡reproduce!
+      // Eventos para seguimiento y control
+      audio.onplay = () => {
+        console.log("🔊 Audio comenzó a reproducirse");
+      };
+  
       audio.onended = () => {
+        console.log("✅ Audio terminó");
         setIsSpeaking(false);
       };
+  
+      audio.onerror = (e) => {
+        console.error("❌ Error al reproducir el audio:", e);
+        setIsSpeaking(false);
+      };
+  
+      audio.play().catch((e) => {
+        console.error("🔇 Error al iniciar la reproducción:", e);
+        setIsSpeaking(false);
+      });
     } catch (error) {
-      console.error("Error al generar voz:", error);
-      setError("Lo siento, algo salió mal.");
+      console.error("💥 Error general en speak:", error);
+      setMessages((prev) => [...prev, { sender: "bot", text: "Lo siento, no pude reproducir el audio." }]);
       setIsSpeaking(false);
     }
   };
+  
   
   
 
