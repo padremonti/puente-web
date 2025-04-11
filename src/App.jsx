@@ -22,6 +22,7 @@ export default function PuenteChat() {
   const speak = async (text) => {
     try {
       setIsSpeaking(true);
+  
       const response = await fetch("https://api.openai.com/v1/audio/speech", {
         method: "POST",
         headers: {
@@ -35,15 +36,25 @@ export default function PuenteChat() {
         }),
       });
   
-      // seguir manejando respuesta...
+      if (!response.ok) {
+        throw new Error("Error al generar el audio");
+      }
   
+      const audioBlob = await response.blob(); // recibes el audio como blob
+      const audioUrl = URL.createObjectURL(audioBlob); // creas una URL reproducible
+      const audio = new Audio(audioUrl); // instancia el reproductor
+  
+      audio.play(); // ¡reproduce!
+      audio.onended = () => {
+        setIsSpeaking(false);
+      };
     } catch (error) {
       console.error("Error al generar voz:", error);
       setError("Lo siento, algo salió mal.");
-    } finally {
       setIsSpeaking(false);
     }
   };
+  
   
 
   const animateTyping = (text) => {
