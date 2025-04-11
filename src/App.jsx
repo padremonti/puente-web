@@ -139,7 +139,7 @@ export default function PuenteChat() {
   if (showIntro) {
     return (
       <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center justify-center p-4 space-y-4 text-center">
-        <img src="/puen logo.png" className="w-24 h-24 rounded-xl" />
+        <img src="/puen-logo.png" className="w-24 h-24 rounded-xl" />
         <h1 className="text-2xl font-bold text-[#c45c2d]">Bienvenido a puen 🌉</h1>
         {!language ? (
           <>
@@ -165,16 +165,16 @@ export default function PuenteChat() {
   return (
     <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center p-4 space-y-4">
       <div className="w-full max-w-md space-y-2">
-        <div className="flex justify-between items-center">
-          <img src="/puen logo.png" className="w-16 h-16 rounded-xl" />
-          <h1 className="text-xl font-bold text-[#c45c2d] text-center flex-1">Puente</h1>
-          <button
-            onClick={() => setVoiceEnabled(!voiceEnabled)}
-            className="bg-[#c45c2d] text-white px-2 py-1 rounded text-sm"
-          >
-            Voz: {voiceEnabled ? "🔊" : "🔇"}
-          </button>
-        </div>
+      <div className="relative flex justify-center items-center">
+  <img src="/puen-logo.png" className="w-20 h-20 rounded-xl" alt="Logo puen" />
+  <button
+    onClick={() => setVoiceEnabled(!voiceEnabled)}
+    className="absolute right-0 top-1 bg-[#c45c2d] text-white px-2 py-1 rounded text-sm"
+  >
+    Voz: {voiceEnabled ? "🔊" : "🔇"}
+  </button>
+</div>
+
 
         <div className="h-96 overflow-y-auto p-2 space-y-2 bg-white rounded-xl shadow-inner">
           {messages.map((msg, i) => (
