@@ -22,7 +22,7 @@ export default function PuenteChat() {
   const speak = async (text) => {
     console.log("🗣️ Llamando a speak con:", text);
     setIsSpeaking(true);
-  
+
     try {
       const response = await fetch("https://api.openai.com/v1/audio/speech", {
         method: "POST",
@@ -36,31 +36,30 @@ export default function PuenteChat() {
           input: text,
         }),
       });
-  
+
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Respuesta no exitosa: ${response.status} - ${errorText}`);
       }
-  
+
       const audioBlob = await response.blob();
       const audioUrl = URL.createObjectURL(audioBlob);
       const audio = new Audio(audioUrl);
-  
-      // Eventos para seguimiento y control
+
       audio.onplay = () => {
         console.log("🔊 Audio comenzó a reproducirse");
       };
-  
+
       audio.onended = () => {
         console.log("✅ Audio terminó");
         setIsSpeaking(false);
       };
-  
+
       audio.onerror = (e) => {
         console.error("❌ Error al reproducir el audio:", e);
         setIsSpeaking(false);
       };
-  
+
       audio.play().catch((e) => {
         console.error("🔇 Error al iniciar la reproducción:", e);
         setIsSpeaking(false);
@@ -71,9 +70,6 @@ export default function PuenteChat() {
       setIsSpeaking(false);
     }
   };
-  
-  
-  
 
   const animateTyping = (text) => {
     let index = 0;
@@ -123,7 +119,6 @@ export default function PuenteChat() {
           ],
         }),
       });
-      
 
       const data = await response.json();
       const content = data?.choices?.[0]?.message?.content?.trim();
@@ -182,8 +177,6 @@ export default function PuenteChat() {
         </div>
 
         <div className="h-96 overflow-y-auto p-2 space-y-2 bg-white rounded-xl shadow-inner">
-          {loading && <p className="text-sm text-gray-500 italic">⏳ Puente está pensando...</p>}
-          {isSpeaking && <p className="text-sm text-gray-500 italic">🔊 Puente está hablando...</p>}
           {messages.map((msg, i) => (
             <div key={i} className={`text-sm p-2 rounded-xl max-w-xs whitespace-pre-wrap ${msg.sender === "user" ? "bg-blue-100 ml-auto" : "bg-orange-100"}`}>
               {msg.text}
@@ -211,6 +204,13 @@ export default function PuenteChat() {
             Enviar
           </button>
         </div>
+
+        {(loading || isSpeaking) && (
+          <div className="text-center mt-2">
+            {loading && <p className="text-sm text-gray-500 italic">⏳ Puente está pensando...</p>}
+            {isSpeaking && <p className="text-sm text-gray-500 italic">🔊 Puente está hablando...</p>}
+          </div>
+        )}
       </div>
     </div>
   );
