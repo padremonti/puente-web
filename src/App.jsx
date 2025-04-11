@@ -166,7 +166,7 @@ export default function PuenteChat() {
     <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center p-4 space-y-4">
       <div className="w-full max-w-md space-y-2">
       <div className="relative flex justify-center items-center">
-  <img src="/puen-logo.png" className="w-20 h-20 rounded-xl" alt="Logo puen" />
+  <img src="/puen-logo.png" className="w-20 h-20 rounded-xl" alt="puen-logo.png" />
   <button
     onClick={() => setVoiceEnabled(!voiceEnabled)}
     className="absolute right-0 top-1 bg-[#c45c2d] text-white px-2 py-1 rounded text-sm"
