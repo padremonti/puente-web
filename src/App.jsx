@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 
 export default function PuenteChat() {
   const [language, setLanguage] = useState(localStorage.getItem("language") || null);
