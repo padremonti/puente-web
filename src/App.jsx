@@ -2,22 +2,6 @@ import React, { useState, useEffect } from "react";
 
 const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
-const temasPermitidos = [
-  "espiritualidad",
-  "inteligencia emocional",
-  "salud mental",
-  "valores",
-  "desarrollo humano",
-  "crecimiento personal",
-  "motivación",
-  "fe",
-  "relaciones humanas"
-];
-
-function esMensajeRelacionado(texto) {
-  const textoMin = texto.toLowerCase();
-  return temasPermitidos.some((tema) => textoMin.includes(tema));
-}
 
 export default function PuenteChat() {
   const [language, setLanguage] = useState(localStorage.getItem("language") || null);
@@ -88,13 +72,6 @@ export default function PuenteChat() {
     setLoading(true);
     setTypingMessage("");
 
-    if (!esMensajeRelacionado(userMessage.text)) {
-      const advertencia = "puen está diseñado para acompañarte en temas de espiritualidad, salud emocional y crecimiento interior. Si tienes preguntas sobre otros temas, te invito a enfocarnos en lo que realmente nutre el alma.";
-      if (voiceEnabled) speak(advertencia);
-      animateTyping(advertencia);
-      return;
-    }
-
     try {
       const response = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
@@ -107,8 +84,15 @@ export default function PuenteChat() {
           messages: [
             {
               role: "system",
-              content: `Eres puen, un acompañante emocional y espiritual. Tu enfoque está en espiritualidad, inteligencia emocional, salud mental, valores, desarrollo humano, crecimiento personal, motivación, fe y relaciones humanas. Si el usuario habla de temas ajenos, agradécele y recuérdale amablemente la función de puen, animándolo a enfocarse en lo que alimenta su interior.`,
+              content: `Eres puen, un acompañante emocional y espiritual. 
+            Estás aquí para ayudar con temas como espiritualidad, inteligencia emocional, salud mental, valores, desarrollo humano, crecimiento personal, motivación, fe y relaciones humanas.
+            Si el usuario plantea algo fuera de ese enfoque (por ejemplo temas técnicos, políticos, o ajenos al crecimiento interior), responde con amabilidad agradeciendo su mensaje y explicándole que puen está centrado en el bienestar emocional, la fe y la profundidad humana.
+            Si el usuario plantea algo relacionado con suicidio, tendencias suicidas, o autolesiones, debes orientarlo para que busque atención profesional en las áreas correspondientes, lo más pronto posible.
+            Si el usuario plantea algo relacionado con prostitucíon, pornografía infantil en cualquier vertiente y otras formas de pornografía, trata de personas, decir con firmeza que puen no es el espacio para hablar de eso.
+            Si el usuario plantea algo relacionado con maltrato físico a personas o animales, debes orientarlo para que busque atención profesional en las instancias correspondientes, lo más pronto posible. 
+            Tu tono es cercano, respetuoso, cálido y claro. Siempre priorizas lo humano y lo interior por encima de lo informativo o externo.`,
             },
+            
             ...messages.map((m) => ({ role: m.sender === "user" ? "user" : "assistant", content: m.text })),
             { role: "user", content: userMessage.text },
           ],
