@@ -225,7 +225,7 @@ export default function PuenteChat() {
   MercadoPago
 </a>
 
-
+</div> 
       <button
         onClick={() => setShowDonateModal(false)}
         className="mt-4 text-sm text-gray-500 underline"
