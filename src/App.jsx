@@ -14,6 +14,8 @@ export default function PuenteChat() {
   const [loading, setLoading] = useState(false);
   const [typingMessage, setTypingMessage] = useState("");
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [showDonateModal, setShowDonateModal] = useState(false);
+  const [agradecimientoActivo, setAgradecimientoActivo] = useState(false);
 
   useEffect(() => localStorage.setItem("language", language || ""), [language]);
   useEffect(() => localStorage.setItem("gender", gender || ""), [gender]);
@@ -156,6 +158,83 @@ export default function PuenteChat() {
             Voz: {voiceEnabled ? "🔊" : "🔇"}
           </button>
         </div>
+        <div className="text-center mt-4">
+  <button
+    onClick={() => setShowDonateModal(true)}
+    className="text-[#c45c2d] underline text-sm font-medium"
+  >
+    💛 Donar
+  </button>
+</div>
+{agradecimientoActivo && (
+  <div className="fixed inset-0 bg-[#fdf2e7] flex flex-col items-center justify-center text-center p-6 z-50">
+    <div className="max-w-sm bg-white rounded-xl shadow-xl p-6 space-y-4">
+      <h2 className="text-xl font-semibold text-[#c45c2d]">¡Gracias por tu apoyo!</h2>
+      <p className="text-gray-700 text-sm">
+        Tu donativo ayuda a que puen siga acompañando a más personas con calidez, espiritualidad y humanidad.
+      </p>
+      <button
+        onClick={() => setAgradecimientoActivo(false)}
+        className="mt-4 bg-[#c45c2d] text-white px-4 py-2 rounded text-sm"
+      >
+        Regresar al chat
+      </button>
+    </div>
+  </div>
+)}
+{showDonateModal && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-xl text-center space-y-4">
+      <h2 className="text-lg font-semibold text-[#c45c2d]">Apoya a puen</h2>
+      <p className="text-sm text-gray-600">Tu donativo ayuda a mantener este espacio gratuito y disponible para más personas.</p>
+
+      <div className="space-y-2">
+      <a
+  href="https://donate.stripe.com/14k6p29k82gSdfG28a"
+  target="_blank"
+  title="Donar con Stripe"
+  className="block bg-[#6772e5] text-white py-2 rounded font-medium"
+>
+  Donar con Stripe
+</a>
+
+<a
+  href="https://www.paypal.com/paypalme/puenapp"
+  target="_blank"
+  title="Donar con PayPal"
+  className="block bg-[#ffc439] text-black py-2 rounded font-medium"
+>
+  Donar con PayPal
+</a>
+
+<a
+  href="https://buymeacoffee.com/puenapp"
+  target="_blank"
+  title="Apoyar en BuyMeACoffee"
+  className="block bg-[#ff813f] text-white py-2 rounded font-medium"
+>
+  BuyMeACoffee
+</a>
+
+<a
+  href="https://link.mercadopago.com.mx/puenapp"
+  target="_blank"
+  title="Donar con MercadoPago"
+  className="block bg-[#009ee3] text-white py-2 rounded font-medium"
+>
+  MercadoPago
+</a>
+
+
+      <button
+        onClick={() => setShowDonateModal(false)}
+        className="mt-4 text-sm text-gray-500 underline"
+      >
+        Cerrar
+      </button>
+    </div>
+  </div>
+)}
 
         <div className="h-96 overflow-y-auto p-2 space-y-2 bg-white rounded-xl shadow-inner">
           {messages.map((msg, i) => (
@@ -167,10 +246,12 @@ export default function PuenteChat() {
             <div className="text-sm p-2 rounded-xl max-w-xs bg-orange-100 animate-pulse">{typingMessage}</div>
           )}
         </div>
-
+        <p className="text-xs text-gray-500 text-center italic mt-2">
+  Nota: Estás usando la versión Lite de <span className="font-semibold">puen</span>. Si cierras o actualizas tu navegador, esta conversación se perderá.
+        </p>
         <div className="flex space-x-2">
           <input
-            value={input}
+            value={input} 
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && !loading && sendMessage()}
             placeholder="Escribe aquí..."
