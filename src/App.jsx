@@ -16,6 +16,14 @@ export default function PuenteChat() {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [showDonateModal, setShowDonateModal] = useState(false);
   const [agradecimientoActivo, setAgradecimientoActivo] = useState(false);
+  const [showVideoIntro, setShowVideoIntro] = useState(false);
+  const textoDonar = {
+    es: "Donar",
+    en: "Donate",
+    pt: "Doar",
+    fr: "Faire un don"
+  }[language];
+  
 
   useEffect(() => localStorage.setItem("language", language || ""), [language]);
   useEffect(() => localStorage.setItem("gender", gender || ""), [gender]);
@@ -128,11 +136,15 @@ export default function PuenteChat() {
         {!language ? (
           <>
             <p>Selecciona tu idioma / Select your language:</p>
-            <div className="flex gap-4">
+              <div className="grid grid-cols-2 gap-3">
               <button onClick={() => setLanguage("es")} className="bg-[#c45c2d] text-white px-4 py-2 rounded">Español</button>
-              <button onClick={() => setLanguage("en")} className="bg-[#c45c2d] text-white px-4 py-2 rounded">English</button>
-            </div>
+            <button  onClick={() => setLanguage("en")} className="bg-[#c45c2d] text-white px-4 py-2 rounded">English</button>
+            <button onClick={() => setLanguage("pt")} className="bg-[#c45c2d] text-white px-4 py-2 rounded">Português</button>
+            <button onClick={() => setLanguage("fr")} className="bg-[#c45c2d] text-white px-4 py-2 rounded">Français</button>
+</div>
+
           </>
+          
         ) : !gender ? (
           <>
             <p>{language === "en" ? "How would you like puen to address you?" : "¿Con qué género deseas que puen te hable?"}</p>
@@ -142,6 +154,25 @@ export default function PuenteChat() {
             </div>
           </>
         ) : null}
+
+
+        {language && (
+  <div className="w-full max-w-md aspect-video">
+    <iframe
+      className="rounded-xl w-full h-full"
+      src={
+        language === "en"
+          ? "https://www.youtube.com/embed/_6NC-SKGuFA"
+          : "https://www.youtube.com/embed/8hdcyqRdL-s"
+      }
+      title="Video de bienvenida"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+  </div>
+)}
+
       </div>
     );
   }
@@ -159,12 +190,14 @@ export default function PuenteChat() {
           </button>
         </div>
         <div className="text-center mt-4">
-  <button
-    onClick={() => setShowDonateModal(true)}
-    className="text-[#c45c2d] underline text-sm font-medium"
-  >
-    💛 Donar
-  </button>
+<button
+  onClick={() => setShowDonateModal(true)}
+  className="text-[#c45c2d] underline text-sm font-medium"
+>
+ 💛 {textoDonar}
+
+</button>
+
 </div>
 {agradecimientoActivo && (
   <div className="fixed inset-0 bg-[#fdf2e7] flex flex-col items-center justify-center text-center p-6 z-50">
@@ -229,6 +262,40 @@ export default function PuenteChat() {
       <button
         onClick={() => setShowDonateModal(false)}
         className="mt-4 text-sm text-gray-500 underline"
+      >
+        Cerrar
+      </button>
+    </div>
+  </div>
+)}
+
+<div className="text-center">
+  <button
+    onClick={() => setShowVideoIntro(true)}
+    className="text-[#c45c2d] underline text-sm font-medium"
+  >
+    ▶️ Ver intro
+  </button>
+</div>
+
+{showVideoIntro && (
+  <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+    <div className="bg-white rounded-xl p-4 max-w-lg w-full space-y-2">
+      <iframe
+        className="w-full aspect-video rounded"
+        src={
+          language === "en"
+            ? "https://www.youtube.com/embed/_6NC-SKGuFA"
+            : "https://www.youtube.com/embed/8hdcyqRdL-s"
+        }
+        title="Video introductorio de puen"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+      <button
+        onClick={() => setShowVideoIntro(false)}
+        className="text-sm text-gray-500 underline w-full mt-2"
       >
         Cerrar
       </button>
