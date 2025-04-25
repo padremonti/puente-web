@@ -383,12 +383,12 @@ export default function PuenteChat() {
         className="w-full aspect-video rounded"
         src={
           language === "en"
-            ? "https://www.youtube.com/embed/_6NC-SKGuFA"
-            : language === "fr"
-            ? "https://www.youtube.com/embed/VIDEO_ID_FR"
-            : language === "pt"
-            ? "https://www.youtube.com/embed/VIDEO_ID_PT"
-            : "https://www.youtube.com/embed/8hdcyqRdL-s"
+          ? "https://www.youtube.com/embed/WqOfshj28GM"
+          : language === "fr"
+          ? "https://www.youtube.com/embed/ii2uTNtQ3kA"
+          : language === "pt"
+          ? "https://www.youtube.com/embed/pX_CN2E7JYc"  
+          : "https://www.youtube.com/embed/a8JuHY6B4QE"
         }
         
         title="Video introductorio de puen"
