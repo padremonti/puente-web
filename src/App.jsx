@@ -40,7 +40,7 @@ export default function PuenteChat() {
       generoF: "Femenino",
       generoM: "Masculino",
       voz: "Voz",
-      idioma: "Idioma",
+      idioma: "Español",
       donar: "Donar",
       verIntro: "▶️ Ver intro",
       bienvenida: "Bienvenido a puen",
@@ -65,7 +65,7 @@ export default function PuenteChat() {
       generoF: "Female",
       generoM: "Male",
       voz: "Voice",
-      idioma: "Language",
+      idioma: "English",
       donar: "Donate",
       verIntro: "▶️ Watch intro",
       bienvenida: "Welcome to puen",
@@ -91,7 +91,7 @@ export default function PuenteChat() {
       generoF: "Feminino",
       generoM: "Masculino",
       voz: "Voz",
-      idioma: "Idioma",
+      idioma: "Português",
       donar: "Doar",
       verIntro: "▶️ Ver introdução",
       bienvenida: "Bem-vindo ao puen",
@@ -116,7 +116,7 @@ export default function PuenteChat() {
       generoF: "Féminin",
       generoM: "Masculin",
       voz: "Voix",
-      idioma: "Langue",
+      idioma: "Français",
       donar: "Faire un don",
       verIntro: "▶️ Voir l’intro",
       bienvenida: "Bienvenue sur puen",
@@ -252,7 +252,7 @@ export default function PuenteChat() {
         <p className="text-sm text-gray-700 max-w-md">{t.mensajeGracias}</p>
         <button
           onClick={() => setShowReturningMessage(false)}
-          className="bg-[#c45c2d] text-white px-4 py-2 rounded"
+          className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
         >
           {t.regresar}
         </button>
@@ -263,21 +263,16 @@ export default function PuenteChat() {
 
   if (showIntro) {
     return (
-      <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center justify-center p-4 space-y-4 text-center">
-        <img src="/puen-logo.png" className="w-24 h-24 rounded-xl" />
-        <h1 className="text-2xl font-bold text-[#c45c2d]">{t.bienvenida} </h1>
-        <p className="text-sm italic text-[#c45c2d] font-medium">{t.eslogan}</p>
-        <p className="text-sm text-gray-700 max-w-md mt-2">
-          {t.descripcion}
-        </p>
+        <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center justify-center p-4 space-y-4 text-center transform transition-all duration-300 ease-out scale-100 opacity-100">
+        <img src="/puen-logo.png" className="w-28 h-28 rounded-2xl mb-6" />
         {!language ? (
           <>
-            <p>Selecciona tu idioma / Select your language:</p>
+        
               <div className="grid grid-cols-2 gap-3">
-              <button onClick={() => setLanguage("es")} className="bg-[#c45c2d] text-white px-4 py-2 rounded">Español</button>
-            <button  onClick={() => setLanguage("en")} className="bg-[#c45c2d] text-white px-4 py-2 rounded">English</button>
-            <button onClick={() => setLanguage("pt")} className="bg-[#c45c2d] text-white px-4 py-2 rounded">Português</button>
-            <button onClick={() => setLanguage("fr")} className="bg-[#c45c2d] text-white px-4 py-2 rounded">Français</button>
+              <button onClick={() => setLanguage("es")} className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded">Español</button>
+            <button  onClick={() => setLanguage("en")} className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded">English</button>
+            <button onClick={() => setLanguage("pt")} className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded">Português</button>
+            <button onClick={() => setLanguage("fr")} className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded">Français</button>
 </div>
 
           </>
@@ -286,10 +281,10 @@ export default function PuenteChat() {
           <>
             <p>{t.seleccionaGenero}</p>
             <div className="flex gap-4">
-            <button onClick={() => { setGender("female"); setShowIntro(false); }} className="bg-[#c45c2d] text-white px-4 py-2 rounded">
+            <button onClick={() => { setGender("female"); setShowIntro(false); }} className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded">
             {t.generoF}
             </button>
-            <button onClick={() => { setGender("male"); setShowIntro(false); }} className="bg-[#c45c2d] text-white px-4 py-2 rounded">
+            <button onClick={() => { setGender("male"); setShowIntro(false); }} className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded">
             {t.generoM}
             </button>
 
@@ -333,16 +328,15 @@ export default function PuenteChat() {
     {/* Botón de voz */}
     <button
       onClick={() => setVoiceEnabled(!voiceEnabled)}
-      className="bg-[#c45c2d] text-white px-2 py-1 rounded text-sm"
-    >
+      className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-2 py-1 rounded text-sm transition-colors duration-300 ease-out"
+      >
       {t.voz}: {voiceEnabled ? "🔊" : "🔇"}
     </button>
 
     {/* Nuevo botón de idioma */}
     <button
       onClick={() => setShowIntro(true)} // Esto vuelve a mostrar la pantalla de selección de idioma
-      className="bg-[#c45c2d] text-white px-2 py-1 rounded text-sm"
-    >
+      className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-2 py-1 rounded text-sm transition-colors duration-300 ease-out"    >
       🌎 {t.idioma}
     </button>
   </div>
@@ -351,7 +345,7 @@ export default function PuenteChat() {
         <div className="text-center mt-4">
 <button
   onClick={() => setShowDonateModal(true)}
-  className="text-[#c45c2d] underline text-sm font-medium"
+  className="text-[#c45c2d] hover:text-[#a64a24]  underline text-sm font-medium"
 >
  💛 {t.donar}
 
@@ -374,64 +368,20 @@ export default function PuenteChat() {
 )}
 {showDonateModal && (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-xl text-center space-y-4">
+    <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-xl text-center space-y-4 transform transition-all duration-300 ease-out scale-100 opacity-100">
       <h2 className="text-lg font-semibold text-[#c45c2d]">{t.apoya}</h2>
       <p className="text-sm text-gray-600">{t.mensajeApoyoCorto}</p>
 
       <div className="space-y-2">
-        {/* 🔵 Enlace real de Stripe USD */}
-        <a
-          href="https://buy.stripe.com/bIYeVy8g43kW1wY9AB"
-          target="_blank"
-          title="Stripe USD"
-          className="block bg-[#6772e5] text-white py-2 rounded font-medium"
-        >
-          💵 Stripe USD
-        </a>
-
-        {/* 🔵 Enlace real de Stripe EUR */}
-        <a
-          href="https://buy.stripe.com/7sIbJm53SbRsfnOdQT" 
-          target="_blank"
-          title="Stripe EUR"
-          className="block bg-[#5469d4] text-white py-2 rounded font-medium"
-        >
-          💶 Stripe EUR
-        </a>
-
-        <a
-          href="https://www.paypal.com/paypalme/puenapp"
-          target="_blank"
-          title="PayPal"
-          className="block bg-[#ffc439] text-black py-2 rounded font-medium"
-        >
-          PayPal 🅿️
-        </a>
-
-        <a
-          href="https://buymeacoffee.com/puenapp"
-          target="_blank"
-          title="BuyMeACoffee"
-          className="block bg-[#ff813f] text-white py-2 rounded font-medium"
-        >
-          BuyMeACoffee ☕
-
-        </a>
-
-        <a
-          href="https://link.mercadopago.com.mx/puenapp"
-          target="_blank"
-          title="MercadoPago"
-          className="block bg-[#009ee3] text-white py-2 rounded font-medium"
-        >
-          MercadoPago 💳
-        </a>
+        {/* Botones de donación */}
+        <a href="https://buy.stripe.com/bIYeVy8g43kW1wY9AB" target="_blank" title="Stripe USD" className="block bg-[#6772e5] hover:bg-[#5469d4] text-white py-2 rounded font-medium">💵 Stripe USD</a>
+        <a href="https://buy.stripe.com/7sIbJm53SbRsfnOdQT" target="_blank" title="Stripe EUR" className="block bg-[#5469d4] hover:bg-[#4355b4] text-white py-2 rounded font-medium">💶 Stripe EUR</a>
+        <a href="https://www.paypal.com/paypalme/puenapp" target="_blank" title="PayPal" className="block bg-[#ffc439] hover:bg-[#e0b02f] text-black py-2 rounded font-medium">PayPal 🅿️</a>
+        <a href="https://buymeacoffee.com/puenapp" target="_blank" title="BuyMeACoffee" className="block bg-[#ff813f] hover:bg-[#e46d30] text-white py-2 rounded font-medium">BuyMeACoffee ☕</a>
+        <a href="https://link.mercadopago.com.mx/puenapp" target="_blank" title="MercadoPago" className="block bg-[#009ee3] hover:bg-[#0080b3] text-white py-2 rounded font-medium">MercadoPago 💳</a>
       </div>
 
-      <button
-        onClick={() => setShowDonateModal(false)}
-        className="mt-4 text-sm text-gray-500 underline"
-      >
+      <button onClick={() => setShowDonateModal(false)} className="mt-4 text-sm text-gray-500 underline">
         {t.cerrar}
       </button>
     </div>
@@ -442,7 +392,7 @@ export default function PuenteChat() {
 <div className="text-center">
   <button
     onClick={() => setShowVideoIntro(true)}
-    className="text-[#c45c2d] underline text-sm font-medium"
+    className="text-[#c45c2d] hover:bg-[#a64a24] underline text-sm font-medium"
   >
     ▶️ {t.verIntro}
   </button>
@@ -467,6 +417,7 @@ export default function PuenteChat() {
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
+        loading="lazy"
       ></iframe>
       <p className="text-sm text-gray-700 text-center mt-4">
         {t.descripcion}
@@ -508,7 +459,7 @@ export default function PuenteChat() {
           <button
             onClick={sendMessage}
             disabled={loading || !input.trim()}
-            className="bg-[#c45c2d] text-white px-4 py-2 rounded disabled:opacity-50"
+            className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded disabled:opacity-50"
           >
           {t.enviar}
         </button>
