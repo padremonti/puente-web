@@ -17,12 +17,88 @@ export default function PuenteChat() {
   const [showDonateModal, setShowDonateModal] = useState(false);
   const [agradecimientoActivo, setAgradecimientoActivo] = useState(false);
   const [showVideoIntro, setShowVideoIntro] = useState(false);
-  const textoDonar = {
-    es: "Donar",
-    en: "Donate",
-    pt: "Doar",
-    fr: "Faire un don"
-  }[language];
+  const [showReturningMessage, setShowReturningMessage] = useState(false);
+
+  useEffect(() => {
+    const lastVisit = localStorage.getItem("lastVisit");
+    const now = Date.now();
+  
+    // Si ha pasado más de 24 horas desde la última visita
+    if (lastVisit && now - parseInt(lastVisit) > 24 * 60 * 60 * 1000) {
+      setShowReturningMessage(true);
+    }
+  
+    // Guardar hora de la visita actual
+    localStorage.setItem("lastVisit", now.toString());
+  }, []);
+  
+  
+  const textos = {
+    es: {
+      eslogan: "donde las almas se encuentran",
+      donar: "Donar",
+      verIntro: "▶️ Ver intro",
+      bienvenida: "Bienvenido a puen 🌉",
+      seleccionaIdioma: "Selecciona tu idioma:",
+      seleccionaGenero: "¿Con qué género deseas que puen te hable?",
+      cerrar: "Cerrar",
+      gracias: "¡Gracias por tu apoyo!",
+      mensajeGracias: "Tu donativo ayuda a que puen siga acompañando a más personas con calidez, espiritualidad y humanidad.",
+      regresar: "Regresar al chat",
+      pensando: "⏳ puen está pensando...",
+      hablando: "🔊 puen está hablando...",
+      advertencia: "Nota: Estás usando la versión Lite de puen. Si cierras o actualizas tu navegador, esta conversación se perderá."
+    },
+    en: {
+      eslogan: "where souls meet",
+      donar: "Donate",
+      verIntro: "▶️ Watch intro",
+      bienvenida: "Welcome to puen 🌉",
+      seleccionaIdioma: "Select your language:",
+      seleccionaGenero: "How would you like puen to address you?",
+      cerrar: "Close",
+      gracias: "Thank you for your support!",
+      mensajeGracias: "Your donation helps puen continue supporting more people with warmth, spirituality, and humanity.",
+      regresar: "Return to chat",
+      pensando: "⏳ puen is thinking...",
+      hablando: "🔊 puen is speaking...",
+      advertencia: "Note: You are using the Lite version of puen. If you close or refresh your browser, this conversation will be lost."
+    },
+    pt: {
+      eslogan: "onde as almas se encontram",
+      donar: "Doar",
+      verIntro: "▶️ Ver introdução",
+      bienvenida: "Bem-vindo ao puen 🌉",
+      seleccionaIdioma: "Selecione seu idioma:",
+      seleccionaGenero: "Com qual gênero você gostaria que o puen fale com você?",
+      cerrar: "Fechar",
+      gracias: "Obrigado pelo seu apoio!",
+      mensajeGracias: "Sua doação ajuda o puen a continuar acompanhando mais pessoas com calor humano, espiritualidade e humanidade.",
+      regresar: "Voltar ao chat",
+      pensando: "⏳ puen está pensando...",
+      hablando: "🔊 puen está falando...",
+      advertencia: "Nota: Você está usando a versão Lite do puen. Se fechar ou atualizar o navegador, a conversa será perdida."
+    },
+    fr: {
+      eslogan: "là où les âmes se rencontrent",
+      donar: "Faire un don",
+      verIntro: "▶️ Voir l’intro",
+      bienvenida: "Bienvenue sur puen 🌉",
+      seleccionaIdioma: "Choisissez votre langue :",
+      seleccionaGenero: "Comment souhaitez-vous que puen s'adresse à vous ?",
+      cerrar: "Fermer",
+      gracias: "Merci pour votre soutien !",
+      mensajeGracias: "Votre don aide puen à continuer d’accompagner plus de personnes avec chaleur, spiritualité et humanité.",
+      regresar: "Retourner au chat",
+      pensando: "⏳ puen réfléchit...",
+      hablando: "🔊 puen parle...",
+      advertencia: "Remarque : vous utilisez la version Lite de puen. Si vous fermez ou actualisez votre navigateur, la conversation sera perdue."
+    }
+  };
+  
+  const t = textos[language] || textos["es"];
+  
+  [language];
   
 
   useEffect(() => localStorage.setItem("language", language || ""), [language]);
@@ -125,11 +201,29 @@ export default function PuenteChat() {
     }
   };
 
+  if (showReturningMessage) {
+    return (
+      <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center justify-center text-center p-6 space-y-4">
+        <img src="/puen-logo.png" className="w-24 h-24 rounded-xl" />
+        <h1 className="text-xl font-bold text-[#c45c2d]">{t.gracias}</h1>
+        <p className="text-sm text-gray-700 max-w-md">{t.mensajeGracias}</p>
+        <button
+          onClick={() => setShowReturningMessage(false)}
+          className="bg-[#c45c2d] text-white px-4 py-2 rounded"
+        >
+          {t.regresar}
+        </button>
+      </div>
+    );
+  }
+  
+
   if (showIntro) {
     return (
       <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center justify-center p-4 space-y-4 text-center">
         <img src="/puen-logo.png" className="w-24 h-24 rounded-xl" />
-        <h1 className="text-2xl font-bold text-[#c45c2d]">Bienvenido a puen 🌉</h1>
+        <h1 className="text-2xl font-bold text-[#c45c2d]">{t.bienvenida} 🌉</h1>
+        <p className="text-sm italic text-[#c45c2d] font-medium">{t.eslogan}</p>
         <p className="text-sm text-gray-700 max-w-md">
           puen es un espacio de acompañamiento centrado en espiritualidad, salud emocional, valores y desarrollo personal. Aquí puedes encontrar claridad, consuelo y motivación.
         </p>
@@ -147,7 +241,7 @@ export default function PuenteChat() {
           
         ) : !gender ? (
           <>
-            <p>{language === "en" ? "How would you like puen to address you?" : "¿Con qué género deseas que puen te hable?"}</p>
+            <p>{t.seleccionaGenero}</p>
             <div className="flex gap-4">
               <button onClick={() => { setGender("female"); setShowIntro(false); }} className="bg-[#c45c2d] text-white px-4 py-2 rounded">Femenino</button>
               <button onClick={() => { setGender("male"); setShowIntro(false); }} className="bg-[#c45c2d] text-white px-4 py-2 rounded">Masculino</button>
@@ -162,10 +256,14 @@ export default function PuenteChat() {
       className="rounded-xl w-full h-full"
       src={
         language === "en"
-          ? "https://www.youtube.com/embed/_6NC-SKGuFA"
-          : "https://www.youtube.com/embed/8hdcyqRdL-s"
+          ? "https://www.youtube.com/embed/WqOfshj28GM"
+          : language === "fr"
+          ? "https://www.youtube.com/embed/ii2uTNtQ3kA"
+          : language === "pt"
+          ? "https://www.youtube.com/embed/pX_CN2E7JYc"  
+          : "https://www.youtube.com/embed/a8JuHY6B4QE"
       }
-      title="Video de bienvenida"
+      title="Intro"
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
@@ -194,7 +292,7 @@ export default function PuenteChat() {
   onClick={() => setShowDonateModal(true)}
   className="text-[#c45c2d] underline text-sm font-medium"
 >
- 💛 {textoDonar}
+ 💛 {t.donar}
 
 </button>
 
@@ -202,7 +300,7 @@ export default function PuenteChat() {
 {agradecimientoActivo && (
   <div className="fixed inset-0 bg-[#fdf2e7] flex flex-col items-center justify-center text-center p-6 z-50">
     <div className="max-w-sm bg-white rounded-xl shadow-xl p-6 space-y-4">
-      <h2 className="text-xl font-semibold text-[#c45c2d]">¡Gracias por tu apoyo!</h2>
+      <h2 className="text-xl font-semibold text-[#c45c2d]">{t.gracias}</h2>
       <p className="text-gray-700 text-sm">
         Tu donativo ayuda a que puen siga acompañando a más personas con calidez, espiritualidad y humanidad.
       </p>
@@ -263,7 +361,7 @@ export default function PuenteChat() {
         onClick={() => setShowDonateModal(false)}
         className="mt-4 text-sm text-gray-500 underline"
       >
-        Cerrar
+        {t.cerrar}
       </button>
     </div>
   </div>
@@ -274,7 +372,7 @@ export default function PuenteChat() {
     onClick={() => setShowVideoIntro(true)}
     className="text-[#c45c2d] underline text-sm font-medium"
   >
-    ▶️ Ver intro
+    ▶️ {t.verIntro}
   </button>
 </div>
 
@@ -286,8 +384,13 @@ export default function PuenteChat() {
         src={
           language === "en"
             ? "https://www.youtube.com/embed/_6NC-SKGuFA"
+            : language === "fr"
+            ? "https://www.youtube.com/embed/VIDEO_ID_FR"
+            : language === "pt"
+            ? "https://www.youtube.com/embed/VIDEO_ID_PT"
             : "https://www.youtube.com/embed/8hdcyqRdL-s"
         }
+        
         title="Video introductorio de puen"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -314,8 +417,9 @@ export default function PuenteChat() {
           )}
         </div>
         <p className="text-xs text-gray-500 text-center italic mt-2">
-  Nota: Estás usando la versión Lite de <span className="font-semibold">puen</span>. Si cierras o actualizas tu navegador, esta conversación se perderá.
+        {t.advertencia}
         </p>
+
         <div className="flex space-x-2">
           <input
             value={input} 
@@ -336,8 +440,8 @@ export default function PuenteChat() {
 
         {(loading || isSpeaking) && (
           <div className="text-center mt-2">
-            {loading && <p className="text-sm text-gray-500 italic">⏳ puen está pensando...</p>}
-            {isSpeaking && <p className="text-sm text-gray-500 italic">🔊 puen está hablando...</p>}
+            {loading && <p className="text-sm text-gray-500 italic">⏳{t.pensando} </p>}
+            {isSpeaking && <p className="text-sm text-gray-500 italic">🔊 {t.hablando} </p>}
           </div>
         )}
       </div>
