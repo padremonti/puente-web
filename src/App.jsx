@@ -39,17 +39,21 @@ export default function PuenteChat() {
       descripcion: "puen es un espacio de acompañamiento centrado en espiritualidad, salud emocional, valores y desarrollo personal. Aquí puedes encontrar claridad, consuelo y motivación.",
       generoF: "Femenino",
       generoM: "Masculino",
+      voz: "Voz",
+      idioma: "Idioma",
       donar: "Donar",
       verIntro: "▶️ Ver intro",
       bienvenida: "Bienvenido a puen",
       seleccionaIdioma: "Selecciona tu idioma:",
       seleccionaGenero: "¿Con qué género deseas que puen te hable?",
+      escribirAqui: "Escribe aquí...",
+      enviar: "Enviar",
       cerrar: "Cerrar",
       gracias: "¡Gracias por tu apoyo!",
       mensajeGracias: "Tu donativo ayuda a que puen siga acompañando a más personas con calidez, espiritualidad y humanidad.",
       regresar: "Regresar al chat",
-      pensando: " puen está pensando...",
-      hablando: " puen está hablando...",
+      pensando: "puen está pensando...",
+      hablando: "puen está hablando...",
       advertencia: "Nota: Estás usando la versión Lite de puen. Si cierras o actualizas tu navegador, esta conversación se perderá.",
       apoya: "Apoya a puen",
       mensajeApoyoCorto: "Tu donativo ayuda a mantener este espacio gratuito y disponible para más personas.",
@@ -60,17 +64,21 @@ export default function PuenteChat() {
       descripcion: "puen is a space for support centered on spirituality, emotional health, values, and personal growth. Here you can find clarity, comfort, and motivation.",
       generoF: "Female",
       generoM: "Male",
+      voz: "Voice",
+      idioma: "Language",
       donar: "Donate",
       verIntro: "▶️ Watch intro",
       bienvenida: "Welcome to puen",
       seleccionaIdioma: "Select your language:",
       seleccionaGenero: "How would you like puen to address you?",
+      escribirAqui: "Write here...",
+      enviar: "Send",
       cerrar: "Close",
       gracias: "Thank you for your support!",
       mensajeGracias: "Your donation helps puen continue supporting more people with warmth, spirituality, and humanity.",
       regresar: "Return to chat",
-      pensando: " puen is thinking...",
-      hablando: " puen is speaking...",
+      pensando: "puen is thinking...",
+      hablando: "puen is speaking...",
       advertencia: "Note: You are using the Lite version of puen. If you close or refresh your browser, this conversation will be lost.",
       apoya: "Support puen", 
       mensajeApoyoCorto: "Your donation helps keep this space free and accessible to more people.",
@@ -82,17 +90,21 @@ export default function PuenteChat() {
       descripcion: "puen é um espaço de acompanhamento centrado na espiritualidade, saúde emocional, valores e desenvolvimento pessoal. Aqui você pode encontrar clareza, consolo e motivação.",
       generoF: "Feminino",
       generoM: "Masculino",
+      voz: "Voz",
+      idioma: "Idioma",
       donar: "Doar",
       verIntro: "▶️ Ver introdução",
       bienvenida: "Bem-vindo ao puen",
       seleccionaIdioma: "Selecione seu idioma:",
       seleccionaGenero: "Com qual gênero você gostaria que o puen fale com você?",
+      escribirAqui: "Escreva aqui...",
+      enviar: "Enviar",
       cerrar: "Fechar",
       gracias: "Obrigado pelo seu apoio!",
       mensajeGracias: "Sua doação ajuda o puen a continuar acompanhando mais pessoas com calor humano, espiritualidade e humanidade.",
       regresar: "Voltar ao chat",
-      pensando: " puen está pensando...",
-      hablando: " puen está falando...",
+      pensando: "puen está pensando...",
+      hablando: "puen está falando...",
       advertencia: "Nota: Você está usando a versão Lite do puen. Se fechar ou atualizar o navegador, a conversa será perdida.",
       apoya: "Apoie o puen",
       mensajeApoyoCorto: "Sua doação ajuda a manter este espaço gratuito e acessível para mais pessoas.",
@@ -103,17 +115,21 @@ export default function PuenteChat() {
       descripcion: "puen est un espace d'accompagnement centré sur la spiritualité, la santé émotionnelle, les valeurs et le développement personnel. Vous pouvez y trouver clarté, réconfort et motivation.",
       generoF: "Féminin",
       generoM: "Masculin",
+      voz: "Voix",
+      idioma: "Langue",
       donar: "Faire un don",
       verIntro: "▶️ Voir l’intro",
       bienvenida: "Bienvenue sur puen",
       seleccionaIdioma: "Choisissez votre langue :",
       seleccionaGenero: "Comment souhaitez-vous que puen s'adresse à vous ?",
+      escribirAqui: "Écrivez ici...",
+      enviar: "Envoyer",
       cerrar: "Fermer",
       gracias: "Merci pour votre soutien !",
       mensajeGracias: "Votre don aide puen à continuer d’accompagner plus de personnes avec chaleur, spiritualité et humanité.",
       regresar: "Retourner au chat",
-      pensando: " puen réfléchit...",
-      hablando: " puen parle...",
+      pensando: "puen réfléchit...",
+      hablando: "puen parle...",
       advertencia: "Remarque : vous utilisez la version Lite de puen. Si vous fermez ou actualisez votre navigateur, la conversation sera perdue.",
       apoya: "Soutenir puen",
       mensajeApoyoCorto: "Votre don aide à maintenir cet espace gratuit et accessible à davantage de personnes.",
@@ -310,15 +326,28 @@ export default function PuenteChat() {
   return (
     <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center p-4 space-y-4">
       <div className="w-full max-w-md space-y-2">
-        <div className="relative flex justify-center items-center">
-          <img src="/puen-logo.png" className="w-20 h-20 rounded-xl" alt="puen-logo.png" />
-          <button
-            onClick={() => setVoiceEnabled(!voiceEnabled)}
-            className="absolute right-0 top-1 bg-[#c45c2d] text-white px-2 py-1 rounded text-sm"
-          >
-            Voz: {voiceEnabled ? "🔊" : "🔇"}
-          </button>
-        </div>
+      <div className="relative flex flex-col items-end justify-center">
+  <img src="/puen-logo.png" className="w-20 h-20 rounded-xl" alt="puen-logo.png" />
+
+  <div className="flex flex-col space-y-2 absolute right-0 top-1">
+    {/* Botón de voz */}
+    <button
+      onClick={() => setVoiceEnabled(!voiceEnabled)}
+      className="bg-[#c45c2d] text-white px-2 py-1 rounded text-sm"
+    >
+      {t.voz}: {voiceEnabled ? "🔊" : "🔇"}
+    </button>
+
+    {/* Nuevo botón de idioma */}
+    <button
+      onClick={() => setShowIntro(true)} // Esto vuelve a mostrar la pantalla de selección de idioma
+      className="bg-[#c45c2d] text-white px-2 py-1 rounded text-sm"
+    >
+      🌎 {t.idioma}
+    </button>
+  </div>
+</div>
+
         <div className="text-center mt-4">
 <button
   onClick={() => setShowDonateModal(true)}
@@ -445,9 +474,10 @@ export default function PuenteChat() {
       <button
         onClick={() => setShowVideoIntro(false)}
         className="text-sm text-gray-500 underline w-full mt-2"
-      >
-        Cerrar
+          >
+        {t.cerrar}
       </button>
+
     </div>
   </div>
 )}
@@ -467,11 +497,11 @@ export default function PuenteChat() {
         </p>
 
         <div className="flex space-x-2">
-          <input
-            value={input} 
+        <input
+            value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && !loading && sendMessage()}
-            placeholder="Escribe aquí..."
+            placeholder={t.escribirAqui}
             className="flex-1 border border-gray-300 p-2 rounded"
             disabled={loading}
           />
@@ -480,8 +510,9 @@ export default function PuenteChat() {
             disabled={loading || !input.trim()}
             className="bg-[#c45c2d] text-white px-4 py-2 rounded disabled:opacity-50"
           >
-            Enviar
-          </button>
+          {t.enviar}
+        </button>
+
         </div>
 
         {(loading || isSpeaking) && (
