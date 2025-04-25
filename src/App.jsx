@@ -36,63 +36,88 @@ export default function PuenteChat() {
   const textos = {
     es: {
       eslogan: "donde las almas se encuentran",
+      descripcion: "puen es un espacio de acompañamiento centrado en espiritualidad, salud emocional, valores y desarrollo personal. Aquí puedes encontrar claridad, consuelo y motivación.",
+      generoF: "Femenino",
+      generoM: "Masculino",
       donar: "Donar",
       verIntro: "▶️ Ver intro",
-      bienvenida: "Bienvenido a puen 🌉",
+      bienvenida: "Bienvenido a puen",
       seleccionaIdioma: "Selecciona tu idioma:",
       seleccionaGenero: "¿Con qué género deseas que puen te hable?",
       cerrar: "Cerrar",
       gracias: "¡Gracias por tu apoyo!",
       mensajeGracias: "Tu donativo ayuda a que puen siga acompañando a más personas con calidez, espiritualidad y humanidad.",
       regresar: "Regresar al chat",
-      pensando: "⏳ puen está pensando...",
-      hablando: "🔊 puen está hablando...",
-      advertencia: "Nota: Estás usando la versión Lite de puen. Si cierras o actualizas tu navegador, esta conversación se perderá."
+      pensando: " puen está pensando...",
+      hablando: " puen está hablando...",
+      advertencia: "Nota: Estás usando la versión Lite de puen. Si cierras o actualizas tu navegador, esta conversación se perderá.",
+      apoya: "Apoya a puen",
+      mensajeApoyoCorto: "Tu donativo ayuda a mantener este espacio gratuito y disponible para más personas.",
+      mensajeApoyo: "Tu donativo ayuda a mantener este espacio gratuito y disponible para más personas.",
     },
     en: {
       eslogan: "where souls meet",
+      descripcion: "puen is a space for support centered on spirituality, emotional health, values, and personal growth. Here you can find clarity, comfort, and motivation.",
+      generoF: "Female",
+      generoM: "Male",
       donar: "Donate",
       verIntro: "▶️ Watch intro",
-      bienvenida: "Welcome to puen 🌉",
+      bienvenida: "Welcome to puen",
       seleccionaIdioma: "Select your language:",
       seleccionaGenero: "How would you like puen to address you?",
       cerrar: "Close",
       gracias: "Thank you for your support!",
       mensajeGracias: "Your donation helps puen continue supporting more people with warmth, spirituality, and humanity.",
       regresar: "Return to chat",
-      pensando: "⏳ puen is thinking...",
-      hablando: "🔊 puen is speaking...",
-      advertencia: "Note: You are using the Lite version of puen. If you close or refresh your browser, this conversation will be lost."
+      pensando: " puen is thinking...",
+      hablando: " puen is speaking...",
+      advertencia: "Note: You are using the Lite version of puen. If you close or refresh your browser, this conversation will be lost.",
+      apoya: "Support puen", 
+      mensajeApoyoCorto: "Your donation helps keep this space free and accessible to more people.",
+      mensajeApoyo: "Your donation helps keep this space free and accessible to more people.",
+
     },
     pt: {
       eslogan: "onde as almas se encontram",
+      descripcion: "puen é um espaço de acompanhamento centrado na espiritualidade, saúde emocional, valores e desenvolvimento pessoal. Aqui você pode encontrar clareza, consolo e motivação.",
+      generoF: "Feminino",
+      generoM: "Masculino",
       donar: "Doar",
       verIntro: "▶️ Ver introdução",
-      bienvenida: "Bem-vindo ao puen 🌉",
+      bienvenida: "Bem-vindo ao puen",
       seleccionaIdioma: "Selecione seu idioma:",
       seleccionaGenero: "Com qual gênero você gostaria que o puen fale com você?",
       cerrar: "Fechar",
       gracias: "Obrigado pelo seu apoio!",
       mensajeGracias: "Sua doação ajuda o puen a continuar acompanhando mais pessoas com calor humano, espiritualidade e humanidade.",
       regresar: "Voltar ao chat",
-      pensando: "⏳ puen está pensando...",
-      hablando: "🔊 puen está falando...",
-      advertencia: "Nota: Você está usando a versão Lite do puen. Se fechar ou atualizar o navegador, a conversa será perdida."
+      pensando: " puen está pensando...",
+      hablando: " puen está falando...",
+      advertencia: "Nota: Você está usando a versão Lite do puen. Se fechar ou atualizar o navegador, a conversa será perdida.",
+      apoya: "Apoie o puen",
+      mensajeApoyoCorto: "Sua doação ajuda a manter este espaço gratuito e acessível para mais pessoas.",
+      mensajeApoyo: "Sua doação ajuda a manter este espaço gratuito e acessível para mais pessoas.",
     },
     fr: {
       eslogan: "là où les âmes se rencontrent",
+      descripcion: "puen est un espace d'accompagnement centré sur la spiritualité, la santé émotionnelle, les valeurs et le développement personnel. Vous pouvez y trouver clarté, réconfort et motivation.",
+      generoF: "Féminin",
+      generoM: "Masculin",
       donar: "Faire un don",
       verIntro: "▶️ Voir l’intro",
-      bienvenida: "Bienvenue sur puen 🌉",
+      bienvenida: "Bienvenue sur puen",
       seleccionaIdioma: "Choisissez votre langue :",
       seleccionaGenero: "Comment souhaitez-vous que puen s'adresse à vous ?",
       cerrar: "Fermer",
       gracias: "Merci pour votre soutien !",
       mensajeGracias: "Votre don aide puen à continuer d’accompagner plus de personnes avec chaleur, spiritualité et humanité.",
       regresar: "Retourner au chat",
-      pensando: "⏳ puen réfléchit...",
-      hablando: "🔊 puen parle...",
-      advertencia: "Remarque : vous utilisez la version Lite de puen. Si vous fermez ou actualisez votre navigateur, la conversation sera perdue."
+      pensando: " puen réfléchit...",
+      hablando: " puen parle...",
+      advertencia: "Remarque : vous utilisez la version Lite de puen. Si vous fermez ou actualisez votre navigateur, la conversation sera perdue.",
+      apoya: "Soutenir puen",
+      mensajeApoyoCorto: "Votre don aide à maintenir cet espace gratuit et accessible à davantage de personnes.",
+      mensajeApoyo: "Votre don aide à maintenir cet espace gratuit et accessible à davantage de personnes.",
     }
   };
   
@@ -171,12 +196,14 @@ export default function PuenteChat() {
             {
               role: "system",
               content: `Eres puen, un acompañante emocional y espiritual. 
-            Estás aquí para ayudar con temas como espiritualidad, inteligencia emocional, salud mental, valores, desarrollo humano, crecimiento personal, motivación, fe y relaciones humanas.
-            Si el usuario plantea algo fuera de ese enfoque (por ejemplo temas técnicos, políticos, o ajenos al crecimiento interior), responde con amabilidad agradeciendo su mensaje y explicándole que puen está centrado en el bienestar emocional, la fe y la profundidad humana.
-            Si el usuario plantea algo relacionado con suicidio, tendencias suicidas, o autolesiones, debes orientarlo para que busque atención profesional en las áreas correspondientes, lo más pronto posible.
-            Si el usuario plantea algo relacionado con prostitucíon, pornografía infantil en cualquier vertiente y otras formas de pornografía, trata de personas, decir con firmeza que puen no es el espacio para hablar de eso.
-            Si el usuario plantea algo relacionado con maltrato físico a personas o animales, debes orientarlo para que busque atención profesional en las instancias correspondientes, lo más pronto posible. 
-            Tu tono es cercano, respetuoso, cálido y claro. Siempre priorizas lo humano y lo interior por encima de lo informativo o externo.`,
+            Estás aquí para ayudar con temas como: espiritualidad, inteligencia emocional, salud mental, valores, desarrollo humano, crecimiento personal, motivación, fe y relaciones humanas.
+            Si el usuario plantea algo fuera de ese enfoque (por ejemplo, temas técnicos, políticos o ajenos al crecimiento interior), responde con amabilidad, agradeciendo su mensaje y explicándole que puen está centrado en el bienestar emocional, la fe y la profundidad humana.
+            Si el usuario plantea algo relacionado con suicidio, pensamientos suicidas o autolesiones, oriéntalo a buscar atención profesional especializada lo antes posible.
+            Si el usuario plantea algo relacionado con prostitución, pornografía infantil o adulta, trata de personas u otras formas de explotación, responde con firmeza que puen no es el espacio para hablar de eso.
+            Si el usuario menciona maltrato físico a personas o animales, oriéntalo a buscar atención profesional en las instancias correspondientes lo antes posible.
+            Tu tono debe ser siempre cercano, respetuoso, cálido y claro. Prioriza lo humano y lo interior por encima de lo informativo o externo.
+            Todas tus respuestas deben ser concretas, para fomentar la participación del usuario. Al final de cada respuesta, incluye una invitación natural y variada para continuar la conversación.
+`,
             },
             
             ...messages.map((m) => ({ role: m.sender === "user" ? "user" : "assistant", content: m.text })),
@@ -188,7 +215,7 @@ export default function PuenteChat() {
       const data = await response.json();
       const content = data?.choices?.[0]?.message?.content?.trim();
       if (content) {
-        const reply = content + " ¿Quieres que avancemos con eso ahora?";
+        const reply = content;
         if (voiceEnabled) speak(reply);
         animateTyping(reply);
       } else {
@@ -222,10 +249,10 @@ export default function PuenteChat() {
     return (
       <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center justify-center p-4 space-y-4 text-center">
         <img src="/puen-logo.png" className="w-24 h-24 rounded-xl" />
-        <h1 className="text-2xl font-bold text-[#c45c2d]">{t.bienvenida} 🌉</h1>
+        <h1 className="text-2xl font-bold text-[#c45c2d]">{t.bienvenida} </h1>
         <p className="text-sm italic text-[#c45c2d] font-medium">{t.eslogan}</p>
-        <p className="text-sm text-gray-700 max-w-md">
-          puen es un espacio de acompañamiento centrado en espiritualidad, salud emocional, valores y desarrollo personal. Aquí puedes encontrar claridad, consuelo y motivación.
+        <p className="text-sm text-gray-700 max-w-md mt-2">
+          {t.descripcion}
         </p>
         {!language ? (
           <>
@@ -243,8 +270,13 @@ export default function PuenteChat() {
           <>
             <p>{t.seleccionaGenero}</p>
             <div className="flex gap-4">
-              <button onClick={() => { setGender("female"); setShowIntro(false); }} className="bg-[#c45c2d] text-white px-4 py-2 rounded">Femenino</button>
-              <button onClick={() => { setGender("male"); setShowIntro(false); }} className="bg-[#c45c2d] text-white px-4 py-2 rounded">Masculino</button>
+            <button onClick={() => { setGender("female"); setShowIntro(false); }} className="bg-[#c45c2d] text-white px-4 py-2 rounded">
+            {t.generoF}
+            </button>
+            <button onClick={() => { setGender("male"); setShowIntro(false); }} className="bg-[#c45c2d] text-white px-4 py-2 rounded">
+            {t.generoM}
+            </button>
+
             </div>
           </>
         ) : null}
@@ -301,9 +333,7 @@ export default function PuenteChat() {
   <div className="fixed inset-0 bg-[#fdf2e7] flex flex-col items-center justify-center text-center p-6 z-50">
     <div className="max-w-sm bg-white rounded-xl shadow-xl p-6 space-y-4">
       <h2 className="text-xl font-semibold text-[#c45c2d]">{t.gracias}</h2>
-      <p className="text-gray-700 text-sm">
-        Tu donativo ayuda a que puen siga acompañando a más personas con calidez, espiritualidad y humanidad.
-      </p>
+      <p className="text-sm text-gray-600">{t.mensajeApoyoCorto}</p>
       <button
         onClick={() => setAgradecimientoActivo(false)}
         className="mt-4 bg-[#c45c2d] text-white px-4 py-2 rounded text-sm"
@@ -316,47 +346,59 @@ export default function PuenteChat() {
 {showDonateModal && (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-xl text-center space-y-4">
-      <h2 className="text-lg font-semibold text-[#c45c2d]">Apoya a puen</h2>
-      <p className="text-sm text-gray-600">Tu donativo ayuda a mantener este espacio gratuito y disponible para más personas.</p>
+      <h2 className="text-lg font-semibold text-[#c45c2d]">{t.apoya}</h2>
+      <p className="text-sm text-gray-600">{t.mensajeApoyoCorto}</p>
 
       <div className="space-y-2">
-      <a
-  href="https://donate.stripe.com/14k6p29k82gSdfG28a"
-  target="_blank"
-  title="Donar con Stripe"
-  className="block bg-[#6772e5] text-white py-2 rounded font-medium"
->
-  Donar con Stripe
-</a>
+        {/* 🔵 Enlace real de Stripe USD */}
+        <a
+          href="https://buy.stripe.com/bIYeVy8g43kW1wY9AB"
+          target="_blank"
+          title="Stripe USD"
+          className="block bg-[#6772e5] text-white py-2 rounded font-medium"
+        >
+          💵 Stripe USD
+        </a>
 
-<a
-  href="https://www.paypal.com/paypalme/puenapp"
-  target="_blank"
-  title="Donar con PayPal"
-  className="block bg-[#ffc439] text-black py-2 rounded font-medium"
->
-  Donar con PayPal
-</a>
+        {/* 🔵 Enlace real de Stripe EUR */}
+        <a
+          href="https://buy.stripe.com/7sIbJm53SbRsfnOdQT" 
+          target="_blank"
+          title="Stripe EUR"
+          className="block bg-[#5469d4] text-white py-2 rounded font-medium"
+        >
+          💶 Stripe EUR
+        </a>
 
-<a
-  href="https://buymeacoffee.com/puenapp"
-  target="_blank"
-  title="Apoyar en BuyMeACoffee"
-  className="block bg-[#ff813f] text-white py-2 rounded font-medium"
->
-  BuyMeACoffee
-</a>
+        <a
+          href="https://www.paypal.com/paypalme/puenapp"
+          target="_blank"
+          title="PayPal"
+          className="block bg-[#ffc439] text-black py-2 rounded font-medium"
+        >
+          PayPal 🅿️
+        </a>
 
-<a
-  href="https://link.mercadopago.com.mx/puenapp"
-  target="_blank"
-  title="Donar con MercadoPago"
-  className="block bg-[#009ee3] text-white py-2 rounded font-medium"
->
-  MercadoPago
-</a>
+        <a
+          href="https://buymeacoffee.com/puenapp"
+          target="_blank"
+          title="BuyMeACoffee"
+          className="block bg-[#ff813f] text-white py-2 rounded font-medium"
+        >
+          BuyMeACoffee ☕
 
-</div> 
+        </a>
+
+        <a
+          href="https://link.mercadopago.com.mx/puenapp"
+          target="_blank"
+          title="MercadoPago"
+          className="block bg-[#009ee3] text-white py-2 rounded font-medium"
+        >
+          MercadoPago 💳
+        </a>
+      </div>
+
       <button
         onClick={() => setShowDonateModal(false)}
         className="mt-4 text-sm text-gray-500 underline"
@@ -366,6 +408,7 @@ export default function PuenteChat() {
     </div>
   </div>
 )}
+
 
 <div className="text-center">
   <button
@@ -391,11 +434,14 @@ export default function PuenteChat() {
           : "https://www.youtube.com/embed/a8JuHY6B4QE"
         }
         
-        title="Video introductorio de puen"
+        title="intro"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       ></iframe>
+      <p className="text-sm text-gray-700 text-center mt-4">
+        {t.descripcion}
+      </p>
       <button
         onClick={() => setShowVideoIntro(false)}
         className="text-sm text-gray-500 underline w-full mt-2"
