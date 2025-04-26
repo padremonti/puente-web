@@ -402,7 +402,7 @@ export default function PuenteChat() {
     onClick={() => setShowVideoIntro(true)}
     className="text-[#c45c2d] hover:bg-[#a64a24] underline text-sm font-medium"
   >
-    ▶️ {t.verIntro}
+     {t.verIntro}
   </button>
 </div>
 
