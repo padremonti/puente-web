@@ -407,6 +407,45 @@ export default function PuenteChat() {
   </button>
 </div>
 
+{showVideoIntro && (
+  <div className={`fixed inset-0 bg-black ${fadeOutVideo ? 'opacity-0' : 'opacity-70'} flex items-center justify-center z-50 transition-opacity duration-500 ease-in-out`}>
+    <div className={`bg-white rounded-2xl p-6 max-w-lg w-full space-y-4 transform ${fadeOutVideo ? 'scale-95 opacity-0' : 'scale-100 opacity-100'} transition-all duration-500 ease-in-out`}>
+      
+      <iframe
+        className="w-full aspect-video rounded-xl"
+        src={
+          language === "en"
+            ? "https://www.youtube.com/embed/WqOfshj28GM"
+            : language === "fr"
+            ? "https://www.youtube.com/embed/ii2uTNtQ3kA"
+            : language === "pt"
+            ? "https://www.youtube.com/embed/pX_CN2E7JYc"
+            : "https://www.youtube.com/embed/a8JuHY6B4QE"
+        }
+        title="Intro"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        loading="lazy"
+      ></iframe>
+
+      <p className="text-sm text-gray-700 text-center">{t.descripcion}</p>
+
+      <button
+        onClick={() => {
+          setFadeOutVideo(true);
+          setTimeout(() => {
+            setShowVideoIntro(false);
+            setFadeOutVideo(false);
+          }, 400); // dura el mismo tiempo que el fade out
+        }}
+        className="text-sm text-gray-500 underline w-full mt-2"
+      >
+        {t.cerrar}
+      </button>
+    </div>
+  </div>
+)}
 
         <div className="h-96 overflow-y-auto p-2 space-y-2 bg-white rounded-xl shadow-inner">
           {messages.map((msg, i) => (
