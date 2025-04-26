@@ -69,7 +69,7 @@ export default function PuenteChat() {
           localStorage.setItem("geoInfoSaved", "true");
   
           // Enviar a Google Sheets
-          fetch("https://script.google.com/macros/s/AKfycbzp8WxHoK-2Zr-Qe0HfPNsOK7fOr_JbGwBm1Xv1v5AFz2gVS3R01O1Tg5AVZWTiUzso/exec", {
+          fetch("https://script.google.com/macros/s/AKfycbx3But7Ge3c5c5D4s5osF2Qo7_-URnjUjPI2PvMkBGhePlnQmaZKS0XJTZ0qpTt9_oy/exec", {
             method: "POST",
             body: JSON.stringify({
               fecha,
