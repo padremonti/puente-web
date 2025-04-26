@@ -422,28 +422,20 @@ export default function PuenteChat() {
 )}
 
 
-<div className="text-center mt-4 space-y-2">
-  <button
-    onClick={() => setShowDonateModal(true)}
-    className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium"
-  >
-    💛 {t.donar}
-  </button>
+<button className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium animate-fadeInDelay1">
+  💛 {t.donar}
+</button>
 
-  <button
-    onClick={() => setShowVideoIntro(true)}
-    className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium"
-  >
-     {t.verIntro}
-  </button>
+<button className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium animate-fadeInDelay2">
+  ▶️ {t.verIntro}
+</button>
 
-  <button
-    onClick={() => setShowPrivacyModal(true)}
-    className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium"
-  >
-    📜 {t.tituloAvisoPrivacidad}
-  </button>
-</div>
+<button className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium animate-fadeInDelay3">
+  📜 {t.tituloAvisoPrivacidad}
+</button>
+
+
+
 
 
 {showVideoIntro && (
