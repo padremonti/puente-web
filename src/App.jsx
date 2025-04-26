@@ -46,48 +46,55 @@ export default function PuenteChat() {
   
 
   useEffect(() => {
-    const storedGeoInfo = localStorage.getItem("geoInfoSaved");
-    if (!storedGeoInfo) {
+    const geoInfoSaved = localStorage.getItem("geoInfoSaved");
+  
+    if (!geoInfoSaved) {
       fetch("https://ipapi.co/json/")
         .then(response => response.json())
         .then(data => {
           const country = data.country_name || "";
           const region = data.region || "";
-          
+  
           const now = new Date();
           const fecha = now.toLocaleDateString("es-MX", { timeZone: "America/Mexico_City" });
           const hora = now.toLocaleTimeString("es-MX", {
             timeZone: "America/Mexico_City",
-            hour12: false, // <-- Esto fuerza el formato 24 horas
+            hour12: false,
             hour: '2-digit',
             minute: '2-digit',
             second: '2-digit'
           });
-          console.log("Enviando a Google Sheets:", { fecha, hora, country, region });
-
-          // Guardar localmente para no duplicar
-          localStorage.setItem("geoInfoSaved", "true");
   
-          // Enviar a Google Sheets
+          console.log("%cEnviando a Google Sheets:", "color: blue; font-weight: bold", { fecha, hora, country, region });
+  
           fetch("https://script.google.com/macros/s/AKfycbymV1MY2XLWuyj-2lRcCyXHlSmp1KwMtvImrgurlbySqlwb7vX6ENDcVX3Nu3v9R1hD/exec", {
             method: "POST",
-            mode: "no-cors", 
-            body: JSON.stringify({
-              fecha,
-              hora,
-              country,
-              region
-            }),
             headers: {
               "Content-Type": "application/json",
-            }
-          });          
+            },
+            body: JSON.stringify({ fecha, hora, country, region }),
+          })
+            .then(response => response.json())
+            .then(result => {
+              if (result.result === "success") {
+                console.log("%c✔️ Registro guardado exitosamente en Google Sheets", "color: green; font-weight: bold");
+                localStorage.setItem("geoInfoSaved", "true");
+              } else {
+                console.error("Error en el guardado:", result);
+              }
+            })
+            .catch(error => {
+              console.error("Error al guardar en Google Sheets:", error);
+            });
         })
         .catch(error => {
-          console.error("Error getting geo info:", error);
+          console.error("Error obteniendo la información geográfica:", error);
         });
+    } else {
+      console.log("%cRegistro ya guardado anteriormente. No se duplica.", "color: orange; font-weight: bold");
     }
   }, []);
+  
   
   
     
