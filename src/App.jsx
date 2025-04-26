@@ -63,7 +63,8 @@ export default function PuenteChat() {
             minute: '2-digit',
             second: '2-digit'
           });
-  
+          console.log("Enviando a Google Sheets:", { fecha, hora, country, region });
+
           // Guardar localmente para no duplicar
           localStorage.setItem("geoInfoSaved", "true");
   
