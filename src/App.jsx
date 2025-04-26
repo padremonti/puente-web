@@ -39,11 +39,11 @@ export default function PuenteChat() {
     const accepted = localStorage.getItem("privacyAccepted");
     if (!accepted) {
       setTimeout(() => {
-        setShowPrivacyNotice(true);
-      }, 2000); // Espera 2 segundos después de cargar
+        setShowPrivacyModal(true);  // <-- ✅ Lo correcto
+      }, 2000);
     }
   }, []);
-    
+  
 
   useEffect(() => {
     const storedGeoInfo = localStorage.getItem("geoInfoSaved");
