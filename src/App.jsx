@@ -53,6 +53,16 @@ export default function PuenteChat() {
         .then(data => {
           const country = data.country_name || "";
           const region = data.region || "";
+          
+          const now = new Date();
+          const fecha = now.toLocaleDateString("es-MX", { timeZone: "America/Mexico_City" });
+          const hora = now.toLocaleTimeString("es-MX", {
+            timeZone: "America/Mexico_City",
+            hour12: false, // <-- Esto fuerza el formato 24 horas
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+          });
   
           // Guardar localmente para no duplicar
           localStorage.setItem("geoInfoSaved", "true");
@@ -61,6 +71,8 @@ export default function PuenteChat() {
           fetch("https://script.google.com/macros/s/AKfycbzp8WxHoK-2Zr-Qe0HfPNsOK7fOr_JbGwBm1Xv1v5AFz2gVS3R01O1Tg5AVZWTiUzso/exec", {
             method: "POST",
             body: JSON.stringify({
+              fecha,
+              hora,
               country,
               region
             }),
@@ -74,6 +86,8 @@ export default function PuenteChat() {
         });
     }
   }, []);
+  
+  
     
   const textos = {
     es: {
