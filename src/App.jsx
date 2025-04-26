@@ -247,7 +247,7 @@ export default function PuenteChat() {
   if (showReturningMessage) {
     return (
       <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center justify-center text-center p-6 space-y-4">
-        <img src="/puen-logo.png" className="w-24 h-24 rounded-xl" />
+        <img src="/puen-logo.png" className="w-24 h-24 rounded-xl" loading="lazy" />
         <h1 className="text-xl font-bold text-[#c45c2d]">{t.gracias}</h1>
         <p className="text-sm text-gray-700 max-w-md">{t.mensajeGracias}</p>
         <button
@@ -264,7 +264,7 @@ export default function PuenteChat() {
   if (showIntro) {
     return (
         <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center justify-center p-4 space-y-4 text-center transform transition-all duration-300 ease-out scale-100 opacity-100">
-        <img src="/puen-logo.png" className="w-28 h-28 rounded-2xl mb-6" />
+        <img src="/puen-logo.png" className="w-28 h-28 rounded-2xl mb-6" loading="lazy" />
         {!language ? (
           <>
         
@@ -321,8 +321,8 @@ export default function PuenteChat() {
   return (
     <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center p-4 space-y-4">
       <div className="w-full max-w-md space-y-2">
-      <div className="relative flex flex-col items-end justify-center">
-  <img src="/puen-logo.png" className="w-20 h-20 rounded-xl" alt="puen-logo.png" />
+      <div className="relative flex flex-col items-center justify-center">
+  <img src="/puen-logo.png" className="w-20 h-20 rounded-xl" alt="puen-logo.png" loading="lazy"/>
 
   <div className="flex flex-col space-y-2 absolute right-0 top-1">
     {/* Botón de voz */}
@@ -335,10 +335,18 @@ export default function PuenteChat() {
 
     {/* Nuevo botón de idioma */}
     <button
-      onClick={() => setShowIntro(true)} // Esto vuelve a mostrar la pantalla de selección de idioma
-      className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-2 py-1 rounded text-sm transition-colors duration-300 ease-out"    >
-      🌎 {t.idioma}
-    </button>
+  onClick={() => {
+    localStorage.removeItem("language");
+    localStorage.removeItem("gender");
+    setLanguage(null);
+    setGender(null);
+    setShowIntro(true);
+  }}
+  className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-2 py-1 rounded text-sm transition-colors duration-300 ease-out"
+>
+  🌎 {t.idioma}
+</button>
+
   </div>
 </div>
 
