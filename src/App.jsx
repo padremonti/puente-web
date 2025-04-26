@@ -383,7 +383,7 @@ export default function PuenteChat() {
   </div>
 )}
 {showDonateModal && (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 modal-fade-in">
     <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-xl text-center space-y-4 transform transition-all duration-300 ease-out scale-100 opacity-100">
       <h2 className="text-lg font-semibold text-[#c45c2d]">{t.apoya}</h2>
       <p className="text-sm text-gray-600">{t.mensajeApoyoCorto}</p>
@@ -439,8 +439,8 @@ export default function PuenteChat() {
 
 
 {showVideoIntro && (
-  <div className={`fixed inset-0 bg-black ${fadeOutVideo ? 'opacity-0' : 'opacity-70'} flex items-center justify-center z-50 transition-opacity duration-500 ease-in-out`}>
-    <div className={`bg-white rounded-2xl p-6 max-w-lg w-full space-y-4 transform ${fadeOutVideo ? 'scale-95 opacity-0' : 'scale-100 opacity-100'} transition-all duration-500 ease-in-out`}>
+  <div className={`fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 ${fadeOutVideo ? 'modal-fade-out' : 'modal-fade-in'}`}>
+    <div className={`bg-white rounded-2xl p-6 max-w-lg w-full space-y-4 transform ${fadeOutVideo ? 'modal-fade-out' : 'modal-fade-in'}`}>
       
       <iframe
         className="w-full aspect-video rounded-xl"
@@ -468,7 +468,7 @@ export default function PuenteChat() {
           setTimeout(() => {
             setShowVideoIntro(false);
             setFadeOutVideo(false);
-          }, 400); // dura el mismo tiempo que el fade out
+          }, 500); // igual a la duración de la animación (0.5s)
         }}
         className="text-sm text-gray-500 underline w-full mt-2"
       >
@@ -477,6 +477,7 @@ export default function PuenteChat() {
     </div>
   </div>
 )}
+
 
         <div className="h-96 overflow-y-auto p-2 space-y-2 bg-white rounded-xl shadow-inner">
           {messages.map((msg, i) => (

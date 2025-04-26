@@ -31,5 +31,37 @@
         transform: translateY(0) scale(1);
       }
     }
-  }
+ 
+
+    .modal-fade-in {
+        animation: fadeInModal 0.5s ease-out forwards;
+      }
+    
+      .modal-fade-out {
+        animation: fadeOutModal 0.5s ease-in forwards;
+      }
+    
+      @keyframes fadeInModal {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    
+      @keyframes fadeOutModal {
+        from {
+          opacity: 1;
+          transform: scale(1);
+        }
+        to {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+      }
+    
+}
   
