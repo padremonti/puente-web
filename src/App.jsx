@@ -407,8 +407,8 @@ export default function PuenteChat() {
 </div>
 
 {showVideoIntro && (
-  <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-    <div className="bg-white rounded-xl p-4 max-w-lg w-full space-y-2">
+  <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-500 ease-out opacity-100">
+    <div className="bg-white rounded-xl p-4 max-w-lg w-full space-y-2 transform transition-all duration-500 ease-out scale-100 opacity-100">
       <iframe
         className="w-full aspect-video rounded"
         src={
@@ -417,29 +417,30 @@ export default function PuenteChat() {
           : language === "fr"
           ? "https://www.youtube.com/embed/ii2uTNtQ3kA"
           : language === "pt"
-          ? "https://www.youtube.com/embed/pX_CN2E7JYc"  
+          ? "https://www.youtube.com/embed/pX_CN2E7JYc"
           : "https://www.youtube.com/embed/a8JuHY6B4QE"
         }
-        
         title="intro"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         loading="lazy"
       ></iframe>
-      <p className="text-sm text-gray-700 text-center mt-4">
+
+      <p className="text-sm text-gray-700 text-center mt-4 leading-relaxed">
         {t.descripcion}
       </p>
+
       <button
         onClick={() => setShowVideoIntro(false)}
         className="text-sm text-gray-500 underline w-full mt-2"
-          >
+      >
         {t.cerrar}
       </button>
-
     </div>
   </div>
 )}
+
 
         <div className="h-96 overflow-y-auto p-2 space-y-2 bg-white rounded-xl shadow-inner">
           {messages.map((msg, i) => (
