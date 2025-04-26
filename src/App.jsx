@@ -19,6 +19,7 @@ export default function PuenteChat() {
   const [showVideoIntro, setShowVideoIntro] = useState(false);
   const [showReturningMessage, setShowReturningMessage] = useState(false);
   const [fadeOutVideo, setFadeOutVideo] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
   useEffect(() => {
     const lastVisit = localStorage.getItem("lastVisit");
@@ -33,7 +34,15 @@ export default function PuenteChat() {
     localStorage.setItem("lastVisit", now.toString());
   }, []);
   
-  
+  useEffect(() => {
+    const accepted = localStorage.getItem("privacyAccepted");
+    if (!accepted) {
+      setTimeout(() => {
+        setShowPrivacyNotice(true);
+      }, 2000); // Espera 2 segundos después de cargar
+    }
+  }, []);
+    
   const textos = {
     es: {
       eslogan: "donde las almas se encuentran",
@@ -43,6 +52,8 @@ export default function PuenteChat() {
       voz: "Voz",
       idioma: "Español",
       donar: "Donar",
+      tituloAvisoPrivacidad: "Aviso de privacidad",
+      avisoPrivacidad: "En puen respetamos tu privacidad. No recolectamos datos personales sensibles ni almacenamos información que permita identificarte de manera individual. De manera anónima, registramos el país y la región (estado o provincia) desde donde te conectas, así como los temas generales de interés sobre los que conversas en la app. Estos datos se utilizan únicamente para mejorar nuestros servicios, comprender mejor a nuestra comunidad y ofrecer una experiencia más enriquecedora. No almacenamos direcciones IP completas, nombres, correos electrónicos ni información privada. Al utilizar puen, aceptas esta forma de recopilación anónima de datos con fines de mejora continua.", 
       verIntro: "▶️ Ver intro",
       bienvenida: "Bienvenido a puen",
       seleccionaIdioma: "Selecciona tu idioma:",
@@ -68,6 +79,8 @@ export default function PuenteChat() {
       voz: "Voice",
       idioma: "English",
       donar: "Donate",
+      tituloAvisoPrivacidad: "Privacy Notice",
+      avisoPrivacidad: "At puen, we respect your privacy. We do not collect sensitive personal data or store information that could individually identify you. We anonymously record the country and region (state or province) from which you connect, as well as the general topics of interest you discuss within the app. This data is used solely to improve our services, better understand our community, and offer a richer experience. We do not store full IP addresses, names, emails, or any private information. By using puen, you agree to this anonymous data collection for continuous improvement purposes.",
       verIntro: "▶️ Watch intro",
       bienvenida: "Welcome to puen",
       seleccionaIdioma: "Select your language:",
@@ -94,6 +107,8 @@ export default function PuenteChat() {
       voz: "Voz",
       idioma: "Português",
       donar: "Doar",
+      tituloAvisoPrivacidad: "Aviso de Privacidade",
+      avisoPrivacidad: "Na puen, respeitamos a sua privacidade. Não coletamos dados pessoais sensíveis nem armazenamos informações que possam identificá-lo individualmente. Registramos de forma anônima o país e a região (estado ou província) de onde você se conecta, bem como os temas gerais de interesse que você aborda no app. Esses dados são usados apenas para melhorar nossos serviços, compreender melhor nossa comunidade e oferecer uma experiência mais rica. Não armazenamos endereços IP completos, nomes, e-mails nem informações privadas. Ao usar a puen, você concorda com esta coleta anônima de dados para fins de melhoria contínua.",
       verIntro: "▶️ Ver introdução",
       bienvenida: "Bem-vindo ao puen",
       seleccionaIdioma: "Selecione seu idioma:",
@@ -119,6 +134,8 @@ export default function PuenteChat() {
       voz: "Voix",
       idioma: "Français",
       donar: "Faire un don",
+      tituloAvisoPrivacidad: "Avis de confidentialité",
+      avisoPrivacidad: "Chez puen, nous respectons votre vie privée. Nous ne collectons pas de données personnelles sensibles ni ne stockons d’informations pouvant vous identifier individuellement. Nous enregistrons de manière anonyme le pays et la région (état ou province) depuis lesquels vous vous connectez, ainsi que les sujets d’intérêt général abordés dans l’application. Ces données sont utilisées uniquement pour améliorer nos services, mieux comprendre notre communauté et offrir une expérience enrichissante. Nous ne stockons pas les adresses IP complètes, les noms, les e-mails ni aucune information privée. En utilisant puen, vous acceptez cette collecte anonyme de données à des fins d’amélioration continue.",
       verIntro: "▶️ Voir l’intro",
       bienvenida: "Bienvenue sur puen",
       seleccionaIdioma: "Choisissez votre langue :",
@@ -351,7 +368,7 @@ export default function PuenteChat() {
   </div>
 </div>
 
-        <div className="text-center mt-4">
+<div className="text-center mt-4">
 <button
   onClick={() => setShowDonateModal(true)}
   className="text-[#c45c2d] hover:text-[#a64a24]  underline text-sm font-medium"
@@ -395,17 +412,49 @@ export default function PuenteChat() {
       </button>
     </div>
   </div>
+
+)}
+{showPrivacyModal && (
+  <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+    <div className="bg-white rounded-xl p-6 max-w-lg w-full text-center space-y-4 transform transition-all duration-300 ease-out scale-100 opacity-100">
+      <h2 className="text-xl font-semibold text-[#c45c2d]">📜 {t.tituloAvisoPrivacidad}</h2>
+      <p className="text-sm text-gray-700 text-justify">
+        {t.avisoPrivacidad}
+      </p>
+      <button
+        onClick={() => setShowPrivacyModal(false)}
+        className="mt-4 text-sm text-gray-500 underline w-full"
+      >
+        {t.cerrar}
+      </button>
+    </div>
+  </div>
 )}
 
 
-<div className="text-center">
+<div className="text-center mt-4 space-y-2">
+  <button
+    onClick={() => setShowDonateModal(true)}
+    className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium"
+  >
+    💛 {t.donar}
+  </button>
+
   <button
     onClick={() => setShowVideoIntro(true)}
-    className="text-[#c45c2d] hover:bg-[#a64a24] underline text-sm font-medium"
+    className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium"
   >
-     {t.verIntro}
+    ▶️ {t.verIntro}
+  </button>
+
+  <button
+    onClick={() => setShowPrivacyModal(true)}
+    className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium"
+  >
+    📜 {t.tituloAvisoPrivacidad}
   </button>
 </div>
+
 
 {showVideoIntro && (
   <div className={`fixed inset-0 bg-black ${fadeOutVideo ? 'opacity-0' : 'opacity-70'} flex items-center justify-center z-50 transition-opacity duration-500 ease-in-out`}>
