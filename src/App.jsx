@@ -368,16 +368,6 @@ export default function PuenteChat() {
   </div>
 </div>
 
-<div className="text-center mt-4">
-<button
-  onClick={() => setShowDonateModal(true)}
-  className="text-[#c45c2d] hover:text-[#a64a24]  underline text-sm font-medium"
->
- 💛 {t.donar}
-
-</button>
-
-</div>
 {agradecimientoActivo && (
   <div className="fixed inset-0 bg-[#fdf2e7] flex flex-col items-center justify-center text-center p-6 z-50">
     <div className="max-w-sm bg-white rounded-xl shadow-xl p-6 space-y-4">
@@ -444,7 +434,7 @@ export default function PuenteChat() {
     onClick={() => setShowVideoIntro(true)}
     className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium"
   >
-    ▶️ {t.verIntro}
+     {t.verIntro}
   </button>
 
   <button
