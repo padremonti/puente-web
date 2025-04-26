@@ -407,25 +407,6 @@ export default function PuenteChat() {
   </button>
 </div>
 
-<iframe
-  className="w-full aspect-video rounded"
-  src={
-    language === "en"
-      ? "https://www.youtube.com/embed/WqOfshj28GM"
-      : language === "fr"
-      ? "https://www.youtube.com/embed/ii2uTNtQ3kA"
-      : language === "pt"
-      ? "https://www.youtube.com/embed/pX_CN2E7JYc"
-      : "https://www.youtube.com/embed/a8JuHY6B4QE"
-  }
-  title="intro"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen
-  loading="lazy"
-/>
-
-
 
         <div className="h-96 overflow-y-auto p-2 space-y-2 bg-white rounded-xl shadow-inner">
           {messages.map((msg, i) => (
