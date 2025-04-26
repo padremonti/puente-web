@@ -34,12 +34,44 @@ export default function PuenteChat() {
     localStorage.setItem("lastVisit", now.toString());
   }, []);
   
+
   useEffect(() => {
     const accepted = localStorage.getItem("privacyAccepted");
     if (!accepted) {
       setTimeout(() => {
         setShowPrivacyNotice(true);
       }, 2000); // Espera 2 segundos después de cargar
+    }
+  }, []);
+    
+
+  useEffect(() => {
+    const storedGeoInfo = localStorage.getItem("geoInfoSaved");
+    if (!storedGeoInfo) {
+      fetch("https://ipapi.co/json/")
+        .then(response => response.json())
+        .then(data => {
+          const country = data.country_name || "";
+          const region = data.region || "";
+  
+          // Guardar localmente para no duplicar
+          localStorage.setItem("geoInfoSaved", "true");
+  
+          // Enviar a Google Sheets
+          fetch("https://script.google.com/macros/s/AKfycbzp8WxHoK-2Zr-Qe0HfPNsOK7fOr_JbGwBm1Xv1v5AFz2gVS3R01O1Tg5AVZWTiUzso/exec", {
+            method: "POST",
+            body: JSON.stringify({
+              country,
+              region
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            }
+          });
+        })
+        .catch(error => {
+          console.error("Error getting geo info:", error);
+        });
     }
   }, []);
     
@@ -422,17 +454,27 @@ export default function PuenteChat() {
 )}
 
 
-<button className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium animate-fadeInDelay1">
+<button
+  onClick={() => setShowDonateModal(true)}
+  className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium animate-fadeInDelay1"
+>
   💛 {t.donar}
 </button>
 
-<button className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium animate-fadeInDelay2">
+<button
+  onClick={() => setShowVideoIntro(true)}
+  className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium animate-fadeInDelay2"
+>
   ▶️ {t.verIntro}
 </button>
 
-<button className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium animate-fadeInDelay3">
+<button
+  onClick={() => setShowPrivacyModal(true)}
+  className="text-[#c45c2d] hover:text-[#a64a24] underline text-sm font-medium animate-fadeInDelay3"
+>
   📜 {t.tituloAvisoPrivacidad}
 </button>
+
 
 
 
