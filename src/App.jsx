@@ -71,6 +71,7 @@ export default function PuenteChat() {
           // Enviar a Google Sheets
           fetch("https://script.google.com/macros/s/AKfycbyL0U8BTrgYvVa8iEL-KZp4ixyoJ4KJwrjuHb2wWKjtiN2uUGL721xEgViS1QVL02fj/exec", {
             method: "POST",
+            mode: "no-cors", 
             body: JSON.stringify({
               fecha,
               hora,
@@ -80,7 +81,7 @@ export default function PuenteChat() {
             headers: {
               "Content-Type": "application/json",
             }
-          });
+          });          
         })
         .catch(error => {
           console.error("Error getting geo info:", error);
