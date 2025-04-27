@@ -20,6 +20,7 @@ export default function PuenteChat() {
   const [showReturningMessage, setShowReturningMessage] = useState(false);
   const [fadeOutVideo, setFadeOutVideo] = useState(false);
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const [showWelcomeToast, setShowWelcomeToast] = useState(true);
 
   useEffect(() => {
     const lastVisit = localStorage.getItem("lastVisit");
@@ -44,7 +45,15 @@ export default function PuenteChat() {
     }
   }, []);
   
-
+  useEffect(() => {
+    if (showWelcomeToast) {
+      const timer = setTimeout(() => {
+        setShowWelcomeToast(false);
+      }, 15000); // 15 segundos
+      return () => clearTimeout(timer);
+    }
+  }, [showWelcomeToast]);
+  
   useEffect(() => {
     const geoInfoSaved = localStorage.getItem("geoInfoSaved");
   
@@ -100,6 +109,7 @@ export default function PuenteChat() {
     
   const textos = {
     es: {
+      bienvenidaToast: "Bienvenido a puen. Este es tu espacio para conversar, reflexionar y reconectar contigo.",
       eslogan: "donde las almas se encuentran",
       descripcion: "puen es un espacio de acompañamiento centrado en espiritualidad, salud emocional, valores y desarrollo personal. Aquí puedes encontrar claridad, consuelo y motivación.",
       generoF: "Femenino",
@@ -127,6 +137,7 @@ export default function PuenteChat() {
       mensajeApoyo: "Tu donativo ayuda a mantener este espacio gratuito y disponible para más personas.",
     },
     en: {
+      bienvenidaToast: "Welcome to puen. This is your space to talk, reflect, and reconnect with yourself.",
       eslogan: "where souls meet",
       descripcion: "puen is a space for support centered on spirituality, emotional health, values, and personal growth. Here you can find clarity, comfort, and motivation.",
       generoF: "Female",
@@ -155,6 +166,7 @@ export default function PuenteChat() {
 
     },
     pt: {
+      bienvenidaToast: "Bem-vindo ao puen. Este é o seu espaço para conversar, refletir e se reconectar consigo mesmo.",
       eslogan: "onde as almas se encontram",
       descripcion: "puen é um espaço de acompanhamento centrado na espiritualidade, saúde emocional, valores e desenvolvimento pessoal. Aqui você pode encontrar clareza, consolo e motivação.",
       generoF: "Feminino",
@@ -183,6 +195,7 @@ export default function PuenteChat() {
     },
     fr: {
       eslogan: "là où les âmes se rencontrent",
+      bienvenidaToast: "Bienvenue sur puen. Cet espace est pour converser, réfléchir et vous reconnecter à vous-même.",
       descripcion: "puen est un espace d'accompagnement centré sur la spiritualité, la santé émotionnelle, les valeurs et le développement personnel. Vous pouvez y trouver clarté, réconfort et motivation.",
       generoF: "Féminin",
       generoM: "Masculin",
@@ -265,7 +278,7 @@ export default function PuenteChat() {
 
   const sendMessage = async () => {
     if (!input.trim()) return;
-
+    setShowWelcomeToast(false);
     const userMessage = { sender: "user", text: input.trim() };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
@@ -320,7 +333,16 @@ export default function PuenteChat() {
   if (showReturningMessage) {
     return (
       <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center justify-center text-center p-6 space-y-4">
-        <img src="/puen-logo.png" className="w-24 h-24 rounded-xl" loading="lazy" />
+       {showWelcomeToast && (
+  <div
+    className={`fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-[#c45c2d] text-white py-3 px-6 rounded-full shadow-lg transition-all duration-500 ease-out ${
+      !showWelcomeToast ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+    }`}
+  >
+    {t.bienvenidaToast}
+    </div>
+  )}
+  <img src="/puen-logo.png" className="w-24 h-24 rounded-xl" loading="lazy" />
         <h1 className="text-xl font-bold text-[#c45c2d]">{t.gracias}</h1>
         <p className="text-sm text-gray-700 max-w-md">{t.mensajeGracias}</p>
         <button
