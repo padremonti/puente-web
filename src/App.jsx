@@ -335,11 +335,11 @@ export default function PuenteChat() {
       <div className="min-h-screen bg-[#fdf2e7] flex flex-col items-center justify-center text-center p-6 space-y-4">
        {showWelcomeToast && (
   <div
-    className={`fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-[#c45c2d] text-white py-3 px-6 rounded-full shadow-lg transition-all duration-500 ease-out ${
-      !showWelcomeToast ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
-    }`}
-  >
-    {t.bienvenidaToast}
+  className={`fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-[#c45c2d] text-white py-3 px-6 rounded-full shadow-lg transition-all duration-500 ease-in-out ${
+    showWelcomeToast ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
+  }`}
+>
+  {t.bienvenidaToast}
     </div>
   )}
   <img src="/puen-logo.png" className="w-24 h-24 rounded-xl" loading="lazy" />
@@ -598,6 +598,18 @@ export default function PuenteChat() {
         </button>
 
         </div>
+
+        <div className="text-center mt-4 animate-fadeInSlideUpDelay">
+  <a
+    href="https://forms.gle/ZJgfwYivTRRFFiG5A"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-block bg-[#c45c2d] hover:bg-[#a64a24] text-white font-medium py-2 px-6 rounded-full transition-all duration-300 ease-out text-sm sm:text-base sm:px-8"
+  >
+    😇✨ Compártenos tu experiencia
+  </a>
+        </div>
+
 
         {(loading || isSpeaking) && (
           <div className="text-center mt-2">
