@@ -446,26 +446,46 @@ export default function PuenteChat() {
         ) : null}
 
 
-        {language && (
-  <div className="w-full max-w-md aspect-video">
-    <iframe
-      className="rounded-xl w-full h-full"
-      src={
-        language === "en"
-          ? "https://www.youtube.com/embed/WqOfshj28GM"
-          : language === "fr"
-          ? "https://www.youtube.com/embed/ii2uTNtQ3kA"
-          : language === "pt"
-          ? "https://www.youtube.com/embed/pX_CN2E7JYc"  
-          : "https://www.youtube.com/embed/a8JuHY6B4QE"
-      }
-      title="Intro"
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-    ></iframe>
-  </div>
+{language && (
+  <>
+    <div className="w-full max-w-md aspect-video">
+      <iframe
+        className="rounded-xl w-full h-full"
+        src={
+          language === "en"
+            ? "https://www.youtube.com/embed/WqOfshj28GM"
+            : language === "fr"
+            ? "https://www.youtube.com/embed/ii2uTNtQ3kA"
+            : language === "pt"
+            ? "https://www.youtube.com/embed/pX_CN2E7JYc"  
+            : "https://www.youtube.com/embed/a8JuHY6B4QE"
+        }
+        title="Intro"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+    </div>
+
+    {showStartButton && (
+      <button
+        onClick={() => {
+          localStorage.setItem("videoSeen", "true");
+          setFadeOutVideo(true);
+          setTimeout(() => {
+            setShowVideoIntro(false);
+            setFadeOutVideo(false);
+            setShowIntro(false);
+          }, 500);
+        }}
+        className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded w-full mt-6 animate-fadeInSlideUp"
+      >
+        {textos[language]?.iniciar || 'Iniciar'}
+      </button>
+    )}
+  </>
 )}
+
 
       </div>
     );
