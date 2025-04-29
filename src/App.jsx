@@ -73,7 +73,7 @@ export default function PuenteChat() {
   
           console.log("%cEnviando a Google Sheets:", "color: blue; font-weight: bold", { fecha, hora, country, region });
   
-          fetch("https://script.google.com/macros/s/AKfycbymV1MY2XLWuyj-2lRcCyXHlSmp1KwMtvImrgurlbySqlwb7vX6ENDcVX3Nu3v9R1hD/exec", {
+          fetch("https://script.google.com/macros/s/AKfycbzr0ojge3FWmrr6a-SqzKhPduY5R8fRMHaqlngdMP5LBMGKEmfyyXiiQnVZ9s4pKETJ/exec", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
