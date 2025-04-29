@@ -559,7 +559,7 @@ export default function PuenteChat() {
 
 {showVideoIntro && (
   <div className={`fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 ${fadeOutVideo ? 'modal-fade-out' : 'modal-fade-in'}`}>
-    <div className={`bg-white rounded-2xl p-6 max-w-lg w-full space-y-4 transform ${fadeOutVideo ? 'modal-fade-out' : 'modal-fade-in'}`}>
+    <div className="bg-white rounded-2xl p-6 max-w-lg w-full space-y-4 transform transition-all duration-300 ease-out">
       
       <iframe
         className="w-full aspect-video rounded-xl"
@@ -587,7 +587,7 @@ export default function PuenteChat() {
           setTimeout(() => {
             setShowVideoIntro(false);
             setFadeOutVideo(false);
-            setShowIntro(false); // <- Esta es la clave para pasar al chat
+            setShowIntro(false); // ← Esto permite pasar al chat
           }, 500);
         }}
         className="text-sm text-gray-500 underline w-full mt-2"
@@ -597,6 +597,7 @@ export default function PuenteChat() {
     </div>
   </div>
 )}
+
 
 
         <div className="h-96 overflow-y-auto p-2 space-y-2 bg-white rounded-xl shadow-inner">
