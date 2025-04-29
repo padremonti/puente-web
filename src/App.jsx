@@ -50,15 +50,7 @@ export default function PuenteChat() {
     }
   }, []);
   
-  useEffect(() => {
-    if (showWelcomeToast) {
-      const timer = setTimeout(() => {
-        setShowWelcomeToast(false);
-      }, 15000); // 15 segundos
-      return () => clearTimeout(timer);
-    }
-  }, [showWelcomeToast]);
-  
+ 
   useEffect(() => {
     const geoInfoSaved = localStorage.getItem("geoInfoSaved");
   
@@ -117,8 +109,23 @@ export default function PuenteChat() {
     }
   }, []);
   
+  useEffect(() => {
+    const accepted = localStorage.getItem("privacyAccepted");
+    if (accepted) {
+      setShowPrivacyModal(false);
+    }
+  }, []);
   
-    
+  useEffect(() => {
+    if (!showIntro && !showVideoIntro && !showReturningMessage && !showPrivacyModal) {
+      setShowWelcomeToast(true);
+      const timer = setTimeout(() => {
+        setShowWelcomeToast(false);
+      }, 5000); // visible durante 5 segundos
+      return () => clearTimeout(timer);
+    }
+  }, [showIntro, showVideoIntro, showReturningMessage, showPrivacyModal]);
+  
   const textos = {
     es: {
       iniciar: "iniciar",
@@ -540,12 +547,13 @@ export default function PuenteChat() {
         {t.avisoPrivacidad}
       </p>
       <button
-        onClick={() => {
-          setFadeOutPrivacy(true);
-          setTimeout(() => {
-            setShowPrivacyModal(false);
-            setFadeOutPrivacy(false);
-          }, 300);
+      onClick={() => {
+        localStorage.setItem("privacyAccepted", "true");
+        setFadeOutPrivacy(true);
+        setTimeout(() => {
+          setShowPrivacyModal(false);
+          setFadeOutPrivacy(false);
+        }, 300);
         }}
         className="mt-4 text-sm text-gray-500 underline w-full"
       >
