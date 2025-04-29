@@ -54,7 +54,7 @@ export default function PuenteChat() {
   useEffect(() => {
     const geoInfoSaved = localStorage.getItem("geoInfoSaved");
   
-    if (!geoInfoSaved) {
+    if (!geoInfoSaved) { 
       fetch("https://ipapi.co/json/")
         .then(response => response.json())
         .then(data => {
