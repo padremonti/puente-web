@@ -1,3 +1,4 @@
+// C4r10 4qt!s 0R4xN0b!5
 import React, { useState, useEffect } from "react";
 
 const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
@@ -22,7 +23,8 @@ export default function PuenteChat() {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   const [showWelcomeToast, setShowWelcomeToast] = useState(true);
   const [fadeOutPrivacy, setFadeOutPrivacy] = useState(false);
-
+  const [fadeInPrivacy, setFadeInPrivacy] = useState(false);
+  
   useEffect(() => {
     const lastVisit = localStorage.getItem("lastVisit");
     const now = Date.now();
@@ -485,21 +487,20 @@ export default function PuenteChat() {
 {showPrivacyModal && (
   <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
     <div className={`bg-white rounded-xl p-6 max-w-lg w-full text-center space-y-4 transform transition-all duration-300 ease-out ${
-  fadeOutPrivacy ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
-}`}>
+      fadeOutPrivacy || fadeInPrivacy ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+    }`}>
       <h2 className="text-xl font-semibold text-[#c45c2d]">📜 {t.tituloAvisoPrivacidad}</h2>
       <p className="text-sm text-gray-700 text-justify">
         {t.avisoPrivacidad}
       </p>
       <button
-       onClick={() => {
-        setFadeOutPrivacy(true);
-        setTimeout(() => {
-          setShowPrivacyModal(false);
-          setFadeOutPrivacy(false);
-        }, 300); // Duración del fade-out en ms
-      }}
-   
+        onClick={() => {
+          setFadeOutPrivacy(true);
+          setTimeout(() => {
+            setShowPrivacyModal(false);
+            setFadeOutPrivacy(false);
+          }, 300); // Duración del fade-out en ms
+        }}
         className="mt-4 text-sm text-gray-500 underline w-full"
       >
         {t.cerrar}
@@ -507,6 +508,7 @@ export default function PuenteChat() {
     </div>
   </div>
 )}
+
 
 
 <button
