@@ -8,7 +8,7 @@ export default function PuenteChat() {
   const [language, setLanguage] = useState(localStorage.getItem("language") || null);
   const [voiceEnabled, setVoiceEnabled] = useState(localStorage.getItem("voiceEnabled") === "true");
   const [voiceOption, setVoiceOption] = useState(localStorage.getItem("voiceOption") || "onyx");
-  const [showIntro, setShowIntro] = useState(!language || !gender);
+  const [showIntro, setShowIntro] = useState(!language);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -420,9 +420,7 @@ export default function PuenteChat() {
     <button
   onClick={() => {
     localStorage.removeItem("language");
-    localStorage.removeItem("gender");
     setLanguage(null);
-    setGender(null);
     setShowIntro(true);
   }}
   className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-2 py-1 rounded text-sm transition-colors duration-300 ease-out"
