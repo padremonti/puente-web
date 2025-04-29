@@ -75,6 +75,7 @@ export default function PuenteChat() {
   
           fetch("https://script.google.com/macros/s/AKfycbzr0ojge3FWmrr6a-SqzKhPduY5R8fRMHaqlngdMP5LBMGKEmfyyXiiQnVZ9s4pKETJ/exec", {
             method: "POST",
+            mode: "no-cors",
             headers: {
               "Content-Type": "application/json",
             },
