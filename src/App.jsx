@@ -1,4 +1,4 @@
-// C4r10 4qt!s 0R4xN0b!5
+// C4r10 4qt!s 3t PhR4nC35cV5 pp 0R4t3xN0b!5 
 import React, { useState, useEffect } from "react";
 
 const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
