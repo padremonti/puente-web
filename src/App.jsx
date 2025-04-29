@@ -6,7 +6,6 @@ const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
 export default function PuenteChat() {
   const [language, setLanguage] = useState(localStorage.getItem("language") || null);
-  const [gender, setGender] = useState(localStorage.getItem("gender") || null);
   const [voiceEnabled, setVoiceEnabled] = useState(localStorage.getItem("voiceEnabled") === "true");
   const [voiceOption, setVoiceOption] = useState(localStorage.getItem("voiceOption") || "onyx");
   const [showIntro, setShowIntro] = useState(!language || !gender);
@@ -232,7 +231,6 @@ export default function PuenteChat() {
   
 
   useEffect(() => localStorage.setItem("language", language || ""), [language]);
-  useEffect(() => localStorage.setItem("gender", gender || ""), [gender]);
   useEffect(() => localStorage.setItem("voiceEnabled", voiceEnabled.toString()), [voiceEnabled]);
   useEffect(() => localStorage.setItem("voiceOption", voiceOption), [voiceOption]);
 
@@ -375,19 +373,6 @@ export default function PuenteChat() {
 
           </>
           
-        ) : !gender ? (
-          <>
-            <p>{t.seleccionaGenero}</p>
-            <div className="flex gap-4">
-            <button onClick={() => { setGender("female"); setShowIntro(false); }} className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded">
-            {t.generoF}
-            </button>
-            <button onClick={() => { setGender("male"); setShowIntro(false); }} className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded">
-            {t.generoM}
-            </button>
-
-            </div>
-          </>
         ) : null}
 
 
@@ -485,9 +470,9 @@ export default function PuenteChat() {
 
 )}
 {showPrivacyModal && (
-  <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div className={`fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 ${fadeInPrivacy ? 'modal-fade-in' : ''}`}>
     <div className={`bg-white rounded-xl p-6 max-w-lg w-full text-center space-y-4 transform transition-all duration-300 ease-out ${
-      fadeOutPrivacy || fadeInPrivacy ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+      fadeOutPrivacy ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
     }`}>
       <h2 className="text-xl font-semibold text-[#c45c2d]">📜 {t.tituloAvisoPrivacidad}</h2>
       <p className="text-sm text-gray-700 text-justify">
@@ -499,7 +484,7 @@ export default function PuenteChat() {
           setTimeout(() => {
             setShowPrivacyModal(false);
             setFadeOutPrivacy(false);
-          }, 300); // Duración del fade-out en ms
+          }, 300);
         }}
         className="mt-4 text-sm text-gray-500 underline w-full"
       >
@@ -508,6 +493,7 @@ export default function PuenteChat() {
     </div>
   </div>
 )}
+
 
 
 
