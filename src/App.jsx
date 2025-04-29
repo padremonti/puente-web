@@ -109,6 +109,13 @@ export default function PuenteChat() {
     }
   }, []);
   
+  useEffect(() => {
+    const videoAlreadySeen = localStorage.getItem("videoSeen");
+    if (videoAlreadySeen) {
+      setShowVideoIntro(false);
+      setShowIntro(false);
+    }
+  }, []);
   
   
     
