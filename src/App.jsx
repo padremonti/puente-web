@@ -365,44 +365,45 @@ export default function PuenteChat() {
           <>
         
         {!language ? (
-  <div className="grid grid-cols-2 gap-3">
-    <button
-      onClick={() => {
-        setLanguage("es");
-        setShowIntro(false);
-      }}
-      className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
-    >
-      Español
-    </button>
-    <button
-      onClick={() => {
-        setLanguage("en");
-        setShowIntro(false);
-      }}
-      className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
-    >
-      English
-    </button>
-    <button
-      onClick={() => {
-        setLanguage("pt");
-        setShowIntro(false);
-      }}
-      className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
-    >
-      Português
-    </button>
-    <button
-      onClick={() => {
-        setLanguage("fr");
-        setShowIntro(false);
-      }}
-      className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
-    >
-      Français
-    </button>
-  </div>
+          <div className="grid grid-cols-2 gap-3">
+  <button
+    onClick={() => {
+      setLanguage("es");
+      setShowVideoIntro(true);
+    }}
+    className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
+  >
+    Español
+  </button>
+  <button
+    onClick={() => {
+      setLanguage("en");
+      setShowVideoIntro(true);
+    }}
+    className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
+  >
+    English
+  </button>
+  <button
+    onClick={() => {
+      setLanguage("pt");
+      setShowVideoIntro(true);
+    }}
+    className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
+  >
+    Português
+  </button>
+  <button
+    onClick={() => {
+      setLanguage("fr");
+      setShowVideoIntro(true);
+    }}
+    className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
+  >
+    Français
+  </button>
+</div>
+
 ) : null}
 
 
@@ -586,7 +587,8 @@ export default function PuenteChat() {
           setTimeout(() => {
             setShowVideoIntro(false);
             setFadeOutVideo(false);
-          }, 500); // igual a la duración de la animación (0.5s)
+            setShowIntro(false); // <- Esta es la clave para pasar al chat
+          }, 500);
         }}
         className="text-sm text-gray-500 underline w-full mt-2"
       >
