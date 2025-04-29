@@ -364,12 +364,47 @@ export default function PuenteChat() {
         {!language ? (
           <>
         
-              <div className="grid grid-cols-2 gap-3">
-              <button onClick={() => setLanguage("es")} className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded">Español</button>
-            <button  onClick={() => setLanguage("en")} className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded">English</button>
-            <button onClick={() => setLanguage("pt")} className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded">Português</button>
-            <button onClick={() => setLanguage("fr")} className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded">Français</button>
-</div>
+        {!language ? (
+  <div className="grid grid-cols-2 gap-3">
+    <button
+      onClick={() => {
+        setLanguage("es");
+        setShowIntro(false);
+      }}
+      className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
+    >
+      Español
+    </button>
+    <button
+      onClick={() => {
+        setLanguage("en");
+        setShowIntro(false);
+      }}
+      className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
+    >
+      English
+    </button>
+    <button
+      onClick={() => {
+        setLanguage("pt");
+        setShowIntro(false);
+      }}
+      className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
+    >
+      Português
+    </button>
+    <button
+      onClick={() => {
+        setLanguage("fr");
+        setShowIntro(false);
+      }}
+      className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
+    >
+      Français
+    </button>
+  </div>
+) : null}
+
 
           </>
           
