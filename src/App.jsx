@@ -23,7 +23,10 @@ export default function PuenteChat() {
   const [showWelcomeToast, setShowWelcomeToast] = useState(true);
   const [fadeOutPrivacy, setFadeOutPrivacy] = useState(false);
   const [fadeInPrivacy, setFadeInPrivacy] = useState(false);
-  
+  const [showStartButton, setShowStartButton] = useState(false);
+
+
+
   useEffect(() => {
     const lastVisit = localStorage.getItem("lastVisit");
     const now = Date.now();
@@ -111,6 +114,7 @@ export default function PuenteChat() {
     
   const textos = {
     es: {
+      iniciar: "iniciar",
       bienvenidaToast: "Bienvenido a puen. Este es tu espacio para conversar, reflexionar y reconectar contigo.",
       eslogan: "donde las almas se encuentran",
       descripcion: "puen es un espacio de acompañamiento centrado en espiritualidad, salud emocional, valores y desarrollo personal. Aquí puedes encontrar claridad, consuelo y motivación.",
@@ -139,6 +143,7 @@ export default function PuenteChat() {
       mensajeApoyo: "Tu donativo ayuda a mantener este espacio gratuito y disponible para más personas.",
     },
     en: {
+      iniciar: "start",
       bienvenidaToast: "Welcome to puen. This is your space to talk, reflect, and reconnect with yourself.",
       eslogan: "where souls meet",
       descripcion: "puen is a space for support centered on spirituality, emotional health, values, and personal growth. Here you can find clarity, comfort, and motivation.",
@@ -168,6 +173,7 @@ export default function PuenteChat() {
 
     },
     pt: {
+      iniciar: "iniciar",
       bienvenidaToast: "Bem-vindo ao puen. Este é o seu espaço para conversar, refletir e se reconectar consigo mesmo.",
       eslogan: "onde as almas se encontram",
       descripcion: "puen é um espaço de acompanhamento centrado na espiritualidade, saúde emocional, valores e desenvolvimento pessoal. Aqui você pode encontrar clareza, consolo e motivação.",
@@ -196,6 +202,7 @@ export default function PuenteChat() {
       mensajeApoyo: "Sua doação ajuda a manter este espaço gratuito e acessível para mais pessoas.",
     },
     fr: {
+      iniciar: "commencer", 
       eslogan: "là où les âmes se rencontrent",
       bienvenidaToast: "Bienvenue sur puen. Cet espace est pour converser, réfléchir et vous reconnecter à vous-même.",
       descripcion: "puen est un espace d'accompagnement centré sur la spiritualité, la santé émotionnelle, les valeurs et le développement personnel. Vous pouvez y trouver clarté, réconfort et motivation.",
@@ -366,43 +373,56 @@ export default function PuenteChat() {
         
         {!language ? (
           <div className="grid grid-cols-2 gap-3">
-  <button
-    onClick={() => {
-      setLanguage("es");
-      setShowVideoIntro(true);
-    }}
-    className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
-  >
-    Español
-  </button>
-  <button
-    onClick={() => {
-      setLanguage("en");
-      setShowVideoIntro(true);
-    }}
-    className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
-  >
-    English
-  </button>
-  <button
-    onClick={() => {
-      setLanguage("pt");
-      setShowVideoIntro(true);
-    }}
-    className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
-  >
-    Português
-  </button>
-  <button
-    onClick={() => {
-      setLanguage("fr");
-      setShowVideoIntro(true);
-    }}
-    className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
-  >
-    Français
-  </button>
-</div>
+          <button
+            onClick={() => {
+              setLanguage("es");
+              setShowVideoIntro(true);
+              setTimeout(() => {
+                setShowStartButton(true);
+              }, 3000); // aparece el botón después de 3 segundos
+            }}
+            className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
+          >
+            Español
+          </button>
+          <button
+            onClick={() => {
+              setLanguage("en");
+              setShowVideoIntro(true);
+              setTimeout(() => {
+                setShowStartButton(true);
+              }, 3000);
+            }}
+            className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
+          >
+            English
+          </button>
+          <button
+            onClick={() => {
+              setLanguage("pt");
+              setShowVideoIntro(true);
+              setTimeout(() => {
+                setShowStartButton(true);
+              }, 3000);
+            }}
+            className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
+          >
+            Português
+          </button>
+          <button
+            onClick={() => {
+              setLanguage("fr");
+              setShowVideoIntro(true);
+              setTimeout(() => {
+                setShowStartButton(true);
+              }, 3000);
+            }}
+            className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded"
+          >
+            Français
+          </button>
+        </div>
+        
 
 ) : null}
 
@@ -581,19 +601,23 @@ export default function PuenteChat() {
 
       <p className="text-sm text-gray-700 text-center">{t.descripcion}</p>
 
-      <button
-        onClick={() => {
-          setFadeOutVideo(true);
-          setTimeout(() => {
-            setShowVideoIntro(false);
-            setFadeOutVideo(false);
-            setShowIntro(false); // ← Esto permite pasar al chat
-          }, 500);
-        }}
-        className="text-sm text-gray-500 underline w-full mt-2"
-      >
-        {t.cerrar}
-      </button>
+      {showStartButton && (
+  <button
+    onClick={() => {
+      localStorage.setItem("videoSeen", "true");
+      setFadeOutVideo(true);
+      setTimeout(() => {
+        setShowVideoIntro(false);
+        setFadeOutVideo(false);
+        setShowIntro(false);
+      }, 500);
+    }}
+    className="bg-[#c45c2d] hover:bg-[#a64a24] text-white px-4 py-2 rounded w-full mt-2 transition-all duration-500 ease-in-out animate-fade-in"
+  >
+    {t.iniciar}
+  </button>
+)}
+
     </div>
   </div>
 )}
